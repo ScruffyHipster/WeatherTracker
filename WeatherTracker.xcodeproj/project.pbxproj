@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,18 @@
 		7517166A2565829300129FBF /* HomeControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751716692565829300129FBF /* HomeControllerDelegate.swift */; };
 		751716702565842C00129FBF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7517166F2565842C00129FBF /* HomeView.swift */; };
 		751716762565858D00129FBF /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751716752565858D00129FBF /* HomeViewModel.swift */; };
+		75171681256589E800129FBF /* ResultsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75171680256589E800129FBF /* ResultsManagerProtocol.swift */; };
+		7517168825658A4F00129FBF /* NetworkRequestor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7517168725658A4F00129FBF /* NetworkRequestor.swift */; };
+		7517169125658B8000129FBF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7517169025658B8000129FBF /* Alamofire */; };
+		7517169925658BA100129FBF /* NetworkRequestorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7517169825658BA100129FBF /* NetworkRequestorProtocol.swift */; };
+		7517169E25658CBD00129FBF /* NetworkEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7517169D25658CBD00129FBF /* NetworkEnviroment.swift */; };
+		751716A425658D0100129FBF /* WeatherRequestEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751716A325658D0100129FBF /* WeatherRequestEnviroment.swift */; };
+		751716C625658F1200129FBF /* WeatherResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751716C525658F1200129FBF /* WeatherResultsManager.swift */; };
+		751716CE25658F7600129FBF /* WeatherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751716CD25658F7600129FBF /* WeatherRequest.swift */; };
+		7518FD022565950C002094DD /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518FD012565950C002094DD /* LocationTableViewCell.swift */; };
+		7518FD0B256596B9002094DD /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518FD0A256596B9002094DD /* UserDefaultsManager.swift */; };
+		7518FD1925659766002094DD /* UserDefaults++Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518FD1825659766002094DD /* UserDefaults++Extentions.swift */; };
+		7518FD21256598BF002094DD /* UserDefaultsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518FD20256598BF002094DD /* UserDefaultsProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +75,17 @@
 		751716692565829300129FBF /* HomeControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerDelegate.swift; sourceTree = "<group>"; };
 		7517166F2565842C00129FBF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		751716752565858D00129FBF /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		75171680256589E800129FBF /* ResultsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsManagerProtocol.swift; sourceTree = "<group>"; };
+		7517168725658A4F00129FBF /* NetworkRequestor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestor.swift; sourceTree = "<group>"; };
+		7517169825658BA100129FBF /* NetworkRequestorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestorProtocol.swift; sourceTree = "<group>"; };
+		7517169D25658CBD00129FBF /* NetworkEnviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEnviroment.swift; sourceTree = "<group>"; };
+		751716A325658D0100129FBF /* WeatherRequestEnviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRequestEnviroment.swift; sourceTree = "<group>"; };
+		751716C525658F1200129FBF /* WeatherResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResultsManager.swift; sourceTree = "<group>"; };
+		751716CD25658F7600129FBF /* WeatherRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRequest.swift; sourceTree = "<group>"; };
+		7518FD012565950C002094DD /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		7518FD0A256596B9002094DD /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		7518FD1825659766002094DD /* UserDefaults++Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults++Extentions.swift"; sourceTree = "<group>"; };
+		7518FD20256598BF002094DD /* UserDefaultsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7517169125658B8000129FBF /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +137,9 @@
 		7517160225657EA100129FBF /* WeatherTracker */ = {
 			isa = PBXGroup;
 			children = (
+				7518FD1725659757002094DD /* Extensions */,
+				751716C025658E9300129FBF /* ViewModels */,
+				7517168525658A1C00129FBF /* Managers */,
 				751716572565809000129FBF /* Constants */,
 				7517163E25657ED900129FBF /* Protocols */,
 				7517163D25657EC700129FBF /* Resources */,
@@ -159,6 +186,7 @@
 		7517163A25657EB200129FBF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7518FD00256594EB002094DD /* Table view cells */,
 				7517166E2565842400129FBF /* Home */,
 			);
 			path = Views;
@@ -167,6 +195,7 @@
 		7517163B25657EB700129FBF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				751716CD25658F7600129FBF /* WeatherRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -191,6 +220,10 @@
 			children = (
 				7517163F25657F0000129FBF /* Coordinator.swift */,
 				7517164C25657FCC00129FBF /* Storyboarded.swift */,
+				75171680256589E800129FBF /* ResultsManagerProtocol.swift */,
+				7517169825658BA100129FBF /* NetworkRequestorProtocol.swift */,
+				7517169D25658CBD00129FBF /* NetworkEnviroment.swift */,
+				7518FD20256598BF002094DD /* UserDefaultsProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -215,18 +248,76 @@
 		7517166E2565842400129FBF /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				751716742565857A00129FBF /* ViewModel */,
 				7517166F2565842C00129FBF /* HomeView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
 		};
-		751716742565857A00129FBF /* ViewModel */ = {
+		7517168525658A1C00129FBF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7518FD092565969F002094DD /* PersistenceManager */,
+				751716C425658EED00129FBF /* ResultsManager */,
+				7517168625658A2A00129FBF /* Networking */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		7517168625658A2A00129FBF /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				751716A225658CE400129FBF /* Enviroments */,
+				7517168725658A4F00129FBF /* NetworkRequestor.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		751716A225658CE400129FBF /* Enviroments */ = {
+			isa = PBXGroup;
+			children = (
+				751716A325658D0100129FBF /* WeatherRequestEnviroment.swift */,
+			);
+			path = Enviroments;
+			sourceTree = "<group>";
+		};
+		751716C025658E9300129FBF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				751716752565858D00129FBF /* HomeViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		751716C425658EED00129FBF /* ResultsManager */ = {
+			isa = PBXGroup;
+			children = (
+				751716C525658F1200129FBF /* WeatherResultsManager.swift */,
+			);
+			path = ResultsManager;
+			sourceTree = "<group>";
+		};
+		7518FD00256594EB002094DD /* Table view cells */ = {
+			isa = PBXGroup;
+			children = (
+				7518FD012565950C002094DD /* LocationTableViewCell.swift */,
+			);
+			path = "Table view cells";
+			sourceTree = "<group>";
+		};
+		7518FD092565969F002094DD /* PersistenceManager */ = {
+			isa = PBXGroup;
+			children = (
+				7518FD0A256596B9002094DD /* UserDefaultsManager.swift */,
+			);
+			path = PersistenceManager;
+			sourceTree = "<group>";
+		};
+		7518FD1725659757002094DD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7518FD1825659766002094DD /* UserDefaults++Extentions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +336,9 @@
 			dependencies = (
 			);
 			name = WeatherTracker;
+			packageProductDependencies = (
+				7517169025658B8000129FBF /* Alamofire */,
+			);
 			productName = WeatherTracker;
 			productReference = 7517160025657EA100129FBF /* WeatherTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -316,6 +410,9 @@
 				Base,
 			);
 			mainGroup = 751715F725657EA100129FBF;
+			packageReferences = (
+				7517168F25658B8000129FBF /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 7517160125657EA100129FBF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -360,14 +457,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				751716702565842C00129FBF /* HomeView.swift in Sources */,
+				7517168825658A4F00129FBF /* NetworkRequestor.swift in Sources */,
 				7517164025657F0000129FBF /* Coordinator.swift in Sources */,
+				751716C625658F1200129FBF /* WeatherResultsManager.swift in Sources */,
+				7518FD21256598BF002094DD /* UserDefaultsProtocol.swift in Sources */,
 				7517160825657EA100129FBF /* HomeViewController.swift in Sources */,
+				751716A425658D0100129FBF /* WeatherRequestEnviroment.swift in Sources */,
 				751716762565858D00129FBF /* HomeViewModel.swift in Sources */,
+				751716CE25658F7600129FBF /* WeatherRequest.swift in Sources */,
+				7517169E25658CBD00129FBF /* NetworkEnviroment.swift in Sources */,
 				7517164D25657FCC00129FBF /* Storyboarded.swift in Sources */,
 				7517160425657EA100129FBF /* AppDelegate.swift in Sources */,
+				7518FD1925659766002094DD /* UserDefaults++Extentions.swift in Sources */,
 				7517160625657EA100129FBF /* SceneDelegate.swift in Sources */,
+				7518FD022565950C002094DD /* LocationTableViewCell.swift in Sources */,
+				7517169925658BA100129FBF /* NetworkRequestorProtocol.swift in Sources */,
 				751716612565811600129FBF /* HomeCoordinator.swift in Sources */,
 				751716592565809C00129FBF /* Constants.swift in Sources */,
+				7518FD0B256596B9002094DD /* UserDefaultsManager.swift in Sources */,
+				75171681256589E800129FBF /* ResultsManagerProtocol.swift in Sources */,
 				7517166A2565829300129FBF /* HomeControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,8 +650,10 @@
 		7517162B25657EA200129FBF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_KEY = 94637947bc1853f73b1ccc559fbd44a8;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = api.openweathermap.org/data/2.5/;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2392YT52CQ;
 				INFOPLIST_FILE = WeatherTracker/Info.plist;
@@ -561,8 +671,10 @@
 		7517162C25657EA200129FBF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_KEY = 94637947bc1853f73b1ccc559fbd44a8;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = api.openweathermap.org/data/2.5/;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2392YT52CQ;
 				INFOPLIST_FILE = WeatherTracker/Info.plist;
@@ -701,6 +813,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7517168F25658B8000129FBF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7517169025658B8000129FBF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7517168F25658B8000129FBF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 751715F825657EA100129FBF /* Project object */;
 }

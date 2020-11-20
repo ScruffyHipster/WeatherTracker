@@ -17,6 +17,8 @@ class HomeViewController: UIViewController {
     
     var homeViewModel: HomeViewModel?
     
+    private var searchController: UISearchController?
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,14 @@ class HomeViewController: UIViewController {
     
     private func setupHomeView() {
         homeView.homeViewModel = homeViewModel
+    }
+    
+    private func setUpSearchBar() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController?.searchResultsUpdater = delegate
+        searchController?.obscuresBackgroundDuringPresentation = true
+        searchController?.searchBar.placeholder = "Search for a location"
+        navigationItem.searchController = searchController
     }
 
 }

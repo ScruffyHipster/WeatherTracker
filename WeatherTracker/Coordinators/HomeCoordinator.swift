@@ -16,6 +16,7 @@ class HomeCoordinator: Coordinator {
     
     private var homeControllerDataSource: HomeControllerDelegate
     private var homeViewModel: HomeViewModel
+    private var userDefaults: WeatherUserDefaultsManager?
     
     lazy var homeController: HomeViewController = {
         var controller = HomeViewController.instantiate()
@@ -27,7 +28,12 @@ class HomeCoordinator: Coordinator {
     //MARK: - Life cycle methods
     init(navController: UINavigationController,
          homeControllerDataSource: HomeControllerDelegate = HomeViewControllerDataSource(),
-         homeViewModel: HomeViewModel = HomeViewModel()) {
+         homeViewModel: HomeViewModel = HomeViewModel(),
+         userDefaults: WeatherUserDefaultsManager = WeatherUserDefaultsManager(userDefaults: .standard) { (results, error) in
+            
+            //do something with the results
+            
+         }) {
         self.navigationController = navController
         self.homeControllerDataSource = homeControllerDataSource
         self.homeViewModel = homeViewModel
@@ -35,11 +41,16 @@ class HomeCoordinator: Coordinator {
     
     //MARK: - Methods
     func start() {
-        //do something
+        initHomeViewController()
+        setUpUserDefaults()
     }
     
     private func initHomeViewController() {
         navigationController.present(homeController, animated: true)
+    }
+    
+    private func setUpUserDefaults() {
+        userDefaults?.retriveObjectsFor(key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
     }
     
     

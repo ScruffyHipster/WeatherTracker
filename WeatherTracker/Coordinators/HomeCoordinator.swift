@@ -41,12 +41,13 @@ class HomeCoordinator: Coordinator {
     
     //MARK: - Methods
     func start() {
-        initHomeViewController()
         setUpUserDefaults()
+        initHomeViewController()
     }
     
     private func initHomeViewController() {
-        navigationController.present(homeController, animated: true)
+        
+        navigationController.pushViewController(homeController, animated: true)
     }
     
     private func setUpUserDefaults() {

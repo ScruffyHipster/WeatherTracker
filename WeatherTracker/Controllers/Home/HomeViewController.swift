@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
     
     private func setupHomeView() {
         homeView.homeViewModel = homeViewModel
+        setUpSearchBar()
     }
     
     private func setUpSearchBar() {

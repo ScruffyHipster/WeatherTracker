@@ -11,7 +11,7 @@ import UIKit
 class HomeViewModel {
     
     // MARK: - Properties
-    private var homeViewTableViewDataSource: HomeViewTableViewDataSource
+    var homeViewTableViewDataSource: HomeViewTableViewDataSource
     private var weatherResultsManager: WeatherResultsManager<WeatherRequest>
     
     // MARK: - Lifecycle methods
@@ -49,6 +49,8 @@ class HomeViewModel {
 class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var favourtieLocations = [String]()
+    private var locationCellIdentifier = Constants.TableViewIdentifiers.locationCell.id
+    private var notSearchedCellIdentifier = Constants.TableViewIdentifiers.notSearchedCell.id
     
     // MARK: - Table view data souce
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,11 +58,47 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
         case 0:
             return 1
         case 1:
-            return favourtieLocations.count
+            return favourtieLocations.isEmpty ? 1 : favourtieLocations.count
         default:
             fatalError("There should only be two sections maximum")
             break
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            return 120
+        case 1:
+            return 180
+        default:
+            return tableView.estimatedRowHeight
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: locationCellIdentifier) as? LocationTableViewCell else {
+                fatalError("we should have a cell registered")
+            }
+            return cell
+        case 1:
+            let cell: UITableViewCell?
+            if favourtieLocations.isEmpty {
+                cell = tableView.dequeueReusableCell(withIdentifier: notSearchedCellIdentifier)
+            } else {
+                cell = UITableViewCell()
+            }
+            return cell ?? UITableViewCell()
+        default:
+            fatalError("There should only be two sections maximum")
+        }
+    }
+    
+    // MARK: - Table view delegate
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -76,9 +114,7 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
         return titleLabel
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
+  
     
     
     

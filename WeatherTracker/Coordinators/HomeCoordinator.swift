@@ -14,20 +14,20 @@ class HomeCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     
-    private var homeControllerDataSource: HomeControllerDelegate
+    private var homeControllerDataSource: HomeViewControllerDataSource
     private var homeViewModel: HomeViewModel
     private var userDefaults: WeatherUserDefaultsManager?
     
     lazy var homeController: HomeViewController = {
         var controller = HomeViewController.instantiate()
-        controller.delegate = homeControllerDataSource
+        controller.coordinator = self
         controller.homeViewModel = homeViewModel
         return controller
     }()
     
     //MARK: - Life cycle methods
     init(navController: UINavigationController,
-         homeControllerDataSource: HomeControllerDelegate = HomeViewControllerDataSource(),
+         homeControllerDataSource: HomeViewControllerDataSource = HomeViewControllerDataSource(),
          homeViewModel: HomeViewModel = HomeViewModel(),
          userDefaults: WeatherUserDefaultsManager = WeatherUserDefaultsManager(userDefaults: .standard) { (results, error) in
             

@@ -23,7 +23,21 @@ struct Constants {
             }
         }
     }
-
+    
+    enum TableViewIdentifiers {
+        case locationCell
+        case notSearchedCell
+        
+        var id: String {
+            switch self {
+            case .locationCell:
+                return "LocationCell"
+            case .notSearchedCell:
+                return "NotSearchedCell"
+            }
+        }
+    }
+    
 }
 
 enum StoryboardIdentifiers: String {

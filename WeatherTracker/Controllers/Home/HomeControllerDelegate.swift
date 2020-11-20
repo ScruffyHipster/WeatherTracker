@@ -7,21 +7,16 @@
 
 import UIKit
 
-/// Delegate for the home view controller
-protocol HomeControllerDelegate: class, UISearchResultsUpdating {
-    
-    
-    
-}
-
 /// Data source for the home view controller
-class HomeViewControllerDataSource: NSObject, HomeControllerDelegate {
+class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
     
     //MARK: - Outlets
     private var searchResultsManager: WeatherResultsManager<WeatherRequest>
     private var debounce: Debounce
     
     private var searchText: String?
+    
+    weak var delegate: HomeControllerDataSourceDelegate?
     
     // MARK: - Lifecycle
     init(debounce: Debounce = Debounce(),
@@ -31,6 +26,11 @@ class HomeViewControllerDataSource: NSObject, HomeControllerDelegate {
     }
     
     //MARK: - Methods
+    
+    private func getInitalLocationData() {
+        
+    }
+    
     private func setUpDebounce() {
         debounce.handler = { [weak self] in
             //whenever debounce.call() is made this will fire
@@ -42,9 +42,11 @@ class HomeViewControllerDataSource: NSObject, HomeControllerDelegate {
     
     private func setUpResultsHanlder() {
         searchResultsManager.resultsHandler = { [weak self] in
+            guard let self = self else { return }
             switch $0 {
             case .success(let result):
                 print(result)
+                self.delegate?.didGetResult(result)
                 //display the results to the user
             case .failure(let error):
                 //show an error that no results we're found

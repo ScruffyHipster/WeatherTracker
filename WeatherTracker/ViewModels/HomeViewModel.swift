@@ -11,6 +11,13 @@ import UIKit
 class HomeViewModel {
     
     // MARK: - Properties
+    var currentLocation: String? {
+        didSet {
+            _ = oldValue
+            //remove
+            weatherResultsManager.search(endpoint: .weather(currentLocation ?? ""))
+        }
+    }
     var homeViewTableViewDataSource: HomeViewTableViewDataSource
     private var weatherResultsManager: WeatherResultsManager<WeatherRequest>
     
@@ -113,10 +120,6 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
         }
         return titleLabel
     }
-    
-  
-    
-    
     
     
 }

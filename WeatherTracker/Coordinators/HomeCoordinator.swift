@@ -17,6 +17,7 @@ class HomeCoordinator: Coordinator {
     private var homeControllerDataSource: HomeViewControllerDataSource
     private var homeViewModel: HomeViewModel
     private var userDefaults: WeatherUserDefaultsManager?
+    private var locationManager: LocationManager?
     
     lazy var homeController: HomeViewController = {
         var controller = HomeViewController.instantiate()
@@ -42,16 +43,32 @@ class HomeCoordinator: Coordinator {
     //MARK: - Methods
     func start() {
         setUpUserDefaults()
+        setUpLocationManager()
         initHomeViewController()
     }
     
     private func initHomeViewController() {
-        
         navigationController.pushViewController(homeController, animated: true)
     }
     
     private func setUpUserDefaults() {
         userDefaults?.retriveObjectsFor(key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
+    }
+    
+    private func setUpLocationManager() {
+        locationManager = LocationManager()
+        
+        locationManager?.handler = { [weak self] location, error in
+            guard let self = self,
+                  let location = location else {
+                //show the error to the user if applicable
+                return
+            }
+            //set the current location
+            self.homeViewModel.currentLocation = location.locality
+        }
+        
+        locationManager?.start()
     }
     
     

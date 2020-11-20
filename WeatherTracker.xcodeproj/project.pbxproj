@@ -34,6 +34,7 @@
 		7518FD0B256596B9002094DD /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518FD0A256596B9002094DD /* UserDefaultsManager.swift */; };
 		7518FD1925659766002094DD /* UserDefaults++Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518FD1825659766002094DD /* UserDefaults++Extentions.swift */; };
 		7518FD21256598BF002094DD /* UserDefaultsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518FD20256598BF002094DD /* UserDefaultsProtocol.swift */; };
+		7538B10A25683895001F0FA5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7538B10925683895001F0FA5 /* LocationManager.swift */; };
 		75819596256822B300321B3D /* DebounceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75819595256822B300321B3D /* DebounceProtocol.swift */; };
 		7581959B256822D300321B3D /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7581959A256822D300321B3D /* Debouncer.swift */; };
 		75C9650425682CF5009DDF8C /* NotSearchedYetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C9650325682CF5009DDF8C /* NotSearchedYetCell.swift */; };
@@ -90,6 +91,7 @@
 		7518FD0A256596B9002094DD /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		7518FD1825659766002094DD /* UserDefaults++Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults++Extentions.swift"; sourceTree = "<group>"; };
 		7518FD20256598BF002094DD /* UserDefaultsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsProtocol.swift; sourceTree = "<group>"; };
+		7538B10925683895001F0FA5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		75819595256822B300321B3D /* DebounceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebounceProtocol.swift; sourceTree = "<group>"; };
 		7581959A256822D300321B3D /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		75C9650325682CF5009DDF8C /* NotSearchedYetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSearchedYetCell.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 		7538B10825683875001F0FA5 /* LocationManager */ = {
 			isa = PBXGroup;
 			children = (
+				7538B10925683895001F0FA5 /* LocationManager.swift */,
 			);
 			path = LocationManager;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				751716762565858D00129FBF /* HomeViewModel.swift in Sources */,
 				751716CE25658F7600129FBF /* WeatherRequest.swift in Sources */,
 				7517169E25658CBD00129FBF /* NetworkEnviroment.swift in Sources */,
+				7538B10A25683895001F0FA5 /* LocationManager.swift in Sources */,
 				7517164D25657FCC00129FBF /* Storyboarded.swift in Sources */,
 				7517160425657EA100129FBF /* AppDelegate.swift in Sources */,
 				75C9650425682CF5009DDF8C /* NotSearchedYetCell.swift in Sources */,
@@ -677,7 +681,7 @@
 				API_KEY = 94637947bc1853f73b1ccc559fbd44a8;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = api.openweathermap.org/data/2.5/;
+				BASE_URL = "https://api.openweathermap.org/data/2.5/weather?";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2392YT52CQ;
 				INFOPLIST_FILE = WeatherTracker/Info.plist;
@@ -698,7 +702,7 @@
 				API_KEY = 94637947bc1853f73b1ccc559fbd44a8;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = api.openweathermap.org/data/2.5/;
+				BASE_URL = "https://api.openweathermap.org/data/2.5/weather?";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2392YT52CQ;
 				INFOPLIST_FILE = WeatherTracker/Info.plist;

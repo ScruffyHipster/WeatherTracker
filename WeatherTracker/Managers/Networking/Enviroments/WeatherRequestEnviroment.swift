@@ -25,7 +25,8 @@ struct WeatherNetworkEnviroment: NetworkEnviroment {
     ///   - searchTerm: Allows choice between .id & .search
     /// - Returns: URLRequest
     func createUrl(endpoint: Endpoints) -> String {
-        return baseUrlString.appending("\(endpoint.endpoint)/?key=\(apiKey)")
+        let term = endpoint.endpoint.replacingOccurrences(of: " ", with: "+").lowercased()
+        return baseUrlString.appending("\(term)&appid=\(apiKey)")
     }
 
 }

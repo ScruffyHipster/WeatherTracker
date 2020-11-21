@@ -26,6 +26,7 @@ class HomeCoordinator: Coordinator {
     lazy var homeController: HomeViewController = {
         var controller = HomeViewController.instantiate()
         controller.coordinator = self
+        controller.homeControllerDataSource = homeControllerDataSource
         controller.homeViewModel = homeViewModel
         return controller
     }()

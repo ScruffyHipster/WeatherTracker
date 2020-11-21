@@ -12,17 +12,14 @@ class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
     
     //MARK: - Outlets
     private var searchResultsManager: WeatherResultsManager<WeatherRequest>
-    private var debounce: Debounce
-    
-    private var searchText: String?
     
     weak var delegate: HomeControllerDataSourceDelegate?
     
     // MARK: - Lifecycle
-    init(debounce: Debounce = Debounce(),
-         searchResultsManager: WeatherResultsManager<WeatherRequest> = WeatherResultsManager<WeatherRequest>()) {
-        self.debounce = debounce
+    init(searchResultsManager: WeatherResultsManager<WeatherRequest> = WeatherResultsManager<WeatherRequest>()) {
         self.searchResultsManager = searchResultsManager
+        super.init()
+        setUpResultsHandler()
     }
     
     //MARK: - Methods
@@ -30,17 +27,9 @@ class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
     private func getInitalLocationData() {
         
     }
+
     
-    private func setUpDebounce() {
-        debounce.handler = { [weak self] in
-            //whenever debounce.call() is made this will fire
-            guard let self = self,
-                  let text = self.searchText else { return }
-            self.searchResultsManager.search(endpoint: .weather(text))
-        }
-    }
-    
-    private func setUpResultsHanlder() {
+    private func setUpResultsHandler() {
         searchResultsManager.resultsHandler = { [weak self] in
             guard let self = self else { return }
             switch $0 {
@@ -57,14 +46,17 @@ class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
     
 }
 
-extension HomeViewControllerDataSource {
+extension HomeViewControllerDataSource: UISearchBarDelegate {
+  
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchResultsManager.search(endpoint: .weather(searchBar.text ?? ""))
+    }
     
     //MARK: - Search results delegate
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         //store the result of the user input and call debounce
-        searchText = text
-        debounce.call()
+        searchResultsManager.search(endpoint: .weather(text))
     }
     
 }

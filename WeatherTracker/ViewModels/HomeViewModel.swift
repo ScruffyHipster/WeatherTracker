@@ -128,6 +128,10 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
         2
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let sectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTableViewSectionHeader.reuseIdentifier) as? HomeTableViewSectionHeader else {
             fatalError("there should be a section header registered for use here")
@@ -135,8 +139,12 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
         switch section {
         case 0:
             sectionHeader.sectionHeaderLabel.text = "Current location"
+            let locationImage = UIImage(systemName: "location")
+            sectionHeader.sectionImageView.image = locationImage
+            
         case 1:
             sectionHeader.sectionHeaderLabel.text = "Favourite locations"
+            sectionHeader.sectionImageView.image = UIImage(systemName: "star")
         default:
             break
         }

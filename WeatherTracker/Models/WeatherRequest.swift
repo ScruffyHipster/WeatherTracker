@@ -21,6 +21,14 @@ struct WeatherRequest: Codable {
     let timezone, id: Int
     let name: String
     let cod: Int
+    
+    func convertToCellData() -> WeatherCellInfo {
+        return WeatherCellInfo(location: name,
+                               country: sys.country,
+                               windSpeed: wind.speed,
+                               temp: main.temp,
+                               windDirection: wind.deg)
+    }
 }
 
 // MARK: - Clouds

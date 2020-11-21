@@ -30,15 +30,28 @@ class HomeViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupHomeView()
+        setUpController()
     }
     
-    private func setupHomeView() {
+    /// Sets up the UI elements and their data models
+    private func setUpController() {
+        setUpHomeViewModel()
+        setUpHomeView()
+        setUpSearchBar()
+    }
+    
+    private func setUpHomeViewModel() {
         guard let homeViewModel = homeViewModel else { return }
-        homeView.homeViewModel = homeViewModel
+        homeViewModel.homeViewTableView = homeView.tableView
+        homeViewModel.setUp()
+    }
+    
+    private func setUpHomeView() {
+        guard let homeViewModel = homeViewModel else { return }
         homeView.tableView.delegate = homeViewModel.homeViewTableViewDataSource
         homeView.tableView.dataSource = homeViewModel.homeViewTableViewDataSource
-        setUpSearchBar()
+        homeView.tableView.register(HomeTableViewSectionHeader.nib, forHeaderFooterViewReuseIdentifier: HomeTableViewSectionHeader.reuseIdentifier)
+        homeView.homeViewModel = homeViewModel
     }
     
     private func setUpSearchBar() {
@@ -51,18 +64,23 @@ class HomeViewController: UIViewController {
 
 }
 
+// MARK: - Home controller data source delegate
 extension HomeViewController: HomeControllerDataSourceDelegate {
     
     /// Handles the results oi user location request
     /// - Parameter result: the result of the users location
     func gotInitalLocationWeather(_ result: WeatherRequest) {
         print(result)
+        //show this result in a results field table view
+        //for the user to select from
     }
     
     /// Handles the result call back from the user search
     /// - Parameter result: the weather  result
     func didGetResult(_ result: WeatherRequest) {
         //we can move to show this on the details view
+        
+        //make call to the coordinator for the next view
     }
     
     

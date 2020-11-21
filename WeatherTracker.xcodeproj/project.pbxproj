@@ -39,6 +39,9 @@
 		7581959B256822D300321B3D /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7581959A256822D300321B3D /* Debouncer.swift */; };
 		75C9650425682CF5009DDF8C /* NotSearchedYetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C9650325682CF5009DDF8C /* NotSearchedYetCell.swift */; };
 		75C9650E25683332009DDF8C /* UIView++Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C9650D25683332009DDF8C /* UIView++Extensions.swift */; };
+		75D3A49B2568477B001A3D3B /* WeatherCellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D3A49A2568477B001A3D3B /* WeatherCellInfo.swift */; };
+		75D3A4A12569975B001A3D3B /* HomeTableViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D3A4A02569975B001A3D3B /* HomeTableViewSectionHeader.swift */; };
+		75D3A4AC25699874001A3D3B /* HomeTableViewSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75D3A4AB25699874001A3D3B /* HomeTableViewSectionHeader.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +99,9 @@
 		7581959A256822D300321B3D /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		75C9650325682CF5009DDF8C /* NotSearchedYetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSearchedYetCell.swift; sourceTree = "<group>"; };
 		75C9650D25683332009DDF8C /* UIView++Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView++Extensions.swift"; sourceTree = "<group>"; };
+		75D3A49A2568477B001A3D3B /* WeatherCellInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCellInfo.swift; sourceTree = "<group>"; };
+		75D3A4A02569975B001A3D3B /* HomeTableViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewSectionHeader.swift; sourceTree = "<group>"; };
+		75D3A4AB25699874001A3D3B /* HomeTableViewSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewSectionHeader.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +202,7 @@
 		7517163A25657EB200129FBF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				75D3A49F2569970C001A3D3B /* Table view header */,
 				7518FD00256594EB002094DD /* Table view cells */,
 				7517166E2565842400129FBF /* Home */,
 			);
@@ -206,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				751716CD25658F7600129FBF /* WeatherRequest.swift */,
+				75D3A49A2568477B001A3D3B /* WeatherCellInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -343,6 +351,15 @@
 			path = LocationManager;
 			sourceTree = "<group>";
 		};
+		75D3A49F2569970C001A3D3B /* Table view header */ = {
+			isa = PBXGroup;
+			children = (
+				75D3A4A02569975B001A3D3B /* HomeTableViewSectionHeader.swift */,
+				75D3A4AB25699874001A3D3B /* HomeTableViewSectionHeader.xib */,
+			);
+			path = "Table view header";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -453,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7517161025657EA200129FBF /* LaunchScreen.storyboard in Resources */,
+				75D3A4AC25699874001A3D3B /* HomeTableViewSectionHeader.xib in Resources */,
 				7517160D25657EA200129FBF /* Assets.xcassets in Resources */,
 				7517160B25657EA100129FBF /* Main.storyboard in Resources */,
 			);
@@ -484,9 +502,11 @@
 				75819596256822B300321B3D /* DebounceProtocol.swift in Sources */,
 				7517164025657F0000129FBF /* Coordinator.swift in Sources */,
 				751716C625658F1200129FBF /* WeatherResultsManager.swift in Sources */,
+				75D3A49B2568477B001A3D3B /* WeatherCellInfo.swift in Sources */,
 				7518FD21256598BF002094DD /* UserDefaultsProtocol.swift in Sources */,
 				75C9650E25683332009DDF8C /* UIView++Extensions.swift in Sources */,
 				7517160825657EA100129FBF /* HomeViewController.swift in Sources */,
+				75D3A4A12569975B001A3D3B /* HomeTableViewSectionHeader.swift in Sources */,
 				751716A425658D0100129FBF /* WeatherRequestEnviroment.swift in Sources */,
 				751716762565858D00129FBF /* HomeViewModel.swift in Sources */,
 				751716CE25658F7600129FBF /* WeatherRequest.swift in Sources */,

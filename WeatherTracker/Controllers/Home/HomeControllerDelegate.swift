@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// Data source for the home view controller
+/// Data source and delgate for the home view controller.
 class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
     
     //MARK: - Outlets

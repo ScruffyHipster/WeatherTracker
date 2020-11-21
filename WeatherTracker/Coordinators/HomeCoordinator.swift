@@ -7,6 +7,10 @@
 
 import UIKit
 
+//Handles the navigation and data pass through between main view
+//and details view. Provides the view controllers with its view controllers
+//and datasources leaving the VC's to handle only what they need to be concerned with
+//data calls and view layout for example.
 class HomeCoordinator: Coordinator {
     
     //MARK: - Properties
@@ -31,8 +35,11 @@ class HomeCoordinator: Coordinator {
          homeControllerDataSource: HomeViewControllerDataSource = HomeViewControllerDataSource(),
          homeViewModel: HomeViewModel = HomeViewModel(),
          userDefaults: WeatherUserDefaultsManager = WeatherUserDefaultsManager(userDefaults: .standard) { (results, error) in
+
+            //search the user defaults for favourite
+            //locations and present to the view controller for
+            //data handling on launch and periodically check for new ones.
             
-            //do something with the results
             
          }) {
         self.navigationController = navController

@@ -15,6 +15,8 @@ protocol LocationManagerProtocol: class {
     func start()
 }
 
+/// Location manager and CLLocationManagerDelegate.
+/// 
 class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDelegate {
     
     

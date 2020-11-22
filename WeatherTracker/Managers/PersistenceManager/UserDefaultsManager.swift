@@ -16,7 +16,6 @@ class UserDefaultsManager<T>: UserDefaultsManagerProtocol {
 
     // MARK: - Propeties
     var userDefaults: UserDefaults
-    var total: Int
     var defaultsReturnDataHandler: (([T]?, UserDefaultsError?) -> Void)?
 
     // MARK: - Init methods
@@ -24,11 +23,9 @@ class UserDefaultsManager<T>: UserDefaultsManagerProtocol {
     /// Init method for user defaults manager
     /// - Parameters:
     ///   - userDefaults: the user defaults instance, defautls to standard
-    ///   - total: the total amount of objects to store
     ///   - closure: used as the return data handler
-    init(userDefaults: UserDefaults = .standard, total: Int = 20) {
+    init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
-        self.total = total
     }
 }
 
@@ -40,7 +37,7 @@ final class WeatherUserDefaultsManager: UserDefaultsManager<WeatherRequest> {
     /// Will save a weather request
     /// - Parameter object: weather request object
     func save(_ object: WeatherRequest) {
-        userDefaults.saveItem(object, total: total)
+        userDefaults.saveItem(object)
     }
 
     /// Retrive objects

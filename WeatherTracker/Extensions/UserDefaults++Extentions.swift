@@ -11,7 +11,7 @@ extension UserDefaults {
 
     /// Saves  the objects . Will remove the last value if greater than the total
     /// - Parameter term: weather result to be saved
-    func saveItem<T: Codable>(_ object: T, total: Int = 10) {
+    func saveItem<T: Codable>(_ object: T) {
         guard let data = value(forKey: Constants.UserDefaultsIdentifiers.favouriteLocations.id) as? Data else {
             self.set(try? PropertyListEncoder().encode([object]), forKey: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
             return
@@ -23,9 +23,6 @@ extension UserDefaults {
         }
         if !previousSearchesArray.isEmpty {
             previousSearchesArray.insert(object, at: 0)
-            if previousSearchesArray.count > total {
-                previousSearchesArray.removeLast()
-            }
             updateWith(previousSearchesArray, key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
         } else {
             previousSearchesArray.append(object)

@@ -48,7 +48,7 @@ class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
                 //display the results to the user
             case .failure(let error):
                 //show an error that no results we're found
-                print(error.errorDescription)
+                print(error.errorDescription ?? "")
             }
         }
     }

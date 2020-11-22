@@ -14,10 +14,6 @@ class HomeView: UIView {
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK: - Properties
-    weak var homeViewModel: HomeViewModel?
-    
-    
     
 }
 

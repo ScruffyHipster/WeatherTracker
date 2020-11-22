@@ -44,7 +44,6 @@ class HomeViewController: UIViewController {
         homeView.tableView.delegate = homeViewModel.homeViewTableViewDataSource
         homeView.tableView.dataSource = homeViewModel.homeViewTableViewDataSource
         homeView.tableView.register(HomeTableViewSectionHeader.nib, forHeaderFooterViewReuseIdentifier: HomeTableViewSectionHeader.reuseIdentifier)
-        homeView.homeViewModel = homeViewModel
     }
     
     private func setUpSearchBar() {

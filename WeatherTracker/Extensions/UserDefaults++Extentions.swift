@@ -10,22 +10,25 @@ import Foundation
 extension UserDefaults {
 
     /// Saves  the objects . Will remove the last value if greater than the total
-    /// - Parameter term: Search term of type String
-    func saveItem<T: Codable>(_ term: T, total: Int = 10) {
+    /// - Parameter term: weather result to be saved
+    func saveItem<T: Codable>(_ object: T, total: Int = 10) {
         guard let data = value(forKey: Constants.UserDefaultsIdentifiers.favouriteLocations.id) as? Data else {
-            self.set(try? PropertyListEncoder().encode([term]), forKey: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
+            self.set(try? PropertyListEncoder().encode([object]), forKey: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
             return
         }
         let previousSearches = try? PropertyListDecoder().decode([T].self, from: data)
         guard var previousSearchesArray = previousSearches else {
-            print("An error occured fetching existing searches")
+            print("An error occured fetching existing saved locations")
             return
         }
         if !previousSearchesArray.isEmpty {
-            previousSearchesArray.insert(term, at: 0)
+            previousSearchesArray.insert(object, at: 0)
             if previousSearchesArray.count > total {
                 previousSearchesArray.removeLast()
             }
+            updateWith(previousSearchesArray, key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
+        } else {
+            previousSearchesArray.append(object)
             updateWith(previousSearchesArray, key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
         }
     }

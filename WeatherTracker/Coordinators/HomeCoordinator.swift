@@ -24,8 +24,6 @@ class HomeCoordinator: Coordinator {
     private var userDefaults: WeatherUserDefaultsManager?
     private var locationManager: LocationManager?
     
-    private var favouriteLocations = [WeatherRequest]()
-    
     lazy var homeController: HomeViewController = {
         var controller = HomeViewController.instantiate()
         controller.coordinator = self
@@ -45,17 +43,11 @@ class HomeCoordinator: Coordinator {
     init(navController: UINavigationController,
          homeControllerDataSource: HomeViewControllerDataSource = HomeViewControllerDataSource(),
          homeViewModel: HomeViewModel = HomeViewModel(),
-         userDefaults: WeatherUserDefaultsManager = WeatherUserDefaultsManager(userDefaults: .standard) { (results, error) in
-            
-            //search the user defaults for favourite
-            //locations and present to the view controller for
-            //data handling on launch and periodically check for new ones.
-            
-            
-         }) {
+         userDefaults: WeatherUserDefaultsManager = WeatherUserDefaultsManager(userDefaults: .standard)) {
         self.navigationController = navController
         self.homeControllerDataSource = homeControllerDataSource
         self.homeViewModel = homeViewModel
+        self.userDefaults = userDefaults
     }
     
     //MARK: - Methods
@@ -77,7 +69,7 @@ class HomeCoordinator: Coordinator {
     private func initDetailsViewController(with result: WeatherRequest) {
         setUpDetailsViewModel()
         //check if in favourties and set whether favourtied
-        let isFavourite = favouriteLocations.filter({
+        let isFavourite = homeViewModel.favouriteLocations.filter({
             $0.name == result.name
         })
         detailsController.viewModel.isFavourtie = isFavourite.count == 1
@@ -90,11 +82,6 @@ class HomeCoordinator: Coordinator {
         detailsViewModel = DetailsViewModel()
         guard let detailsViewModel = detailsViewModel else { return }
         detailsController.viewModel = detailsViewModel
-    }
-    
-    /// Sets up the user defaults used for persistence
-    private func setUpUserDefaults() {
-        userDefaults?.retriveObjectsFor(key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
     }
     
     /// Sets up the location manager used to get users current location
@@ -114,11 +101,35 @@ class HomeCoordinator: Coordinator {
         locationManager?.start()
     }
     
+    private func setUpUserDefaults() {
+        userDefaults?.defaultsReturnDataHandler = { [weak self] (results, error) in
+            //search the user defaults for favourite
+            //locations and present to the view controller for
+            //data handling on launch and periodically check for new ones.
+            guard let error = error else {
+                guard let results = results,
+                      let self = self
+                else { return }
+                if !results.isEmpty {
+                    self.homeViewModel.favouriteLocations = results
+                }
+                return
+            }
+            //TODO:- handle the request
+            print(error)
+        }
+    }
+    
     
 }
 
 // MARK:  HomeViewController coordinator methods
 extension HomeCoordinator {
+    
+    /// Sets up the user defaults used for persistence
+    func syncUpUserDefaults() {
+        userDefaults?.retriveObjectsFor(key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
+    }
     
     func showDetailsViewWith(_ data: WeatherRequest) {
         initDetailsViewController(with: data)
@@ -129,6 +140,7 @@ extension HomeCoordinator {
         if favourite {
             userDefaults?.save(data)
         } else {
+            userDefaults?.deleteObject(object: data, key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
             //delete the object
         }
     }

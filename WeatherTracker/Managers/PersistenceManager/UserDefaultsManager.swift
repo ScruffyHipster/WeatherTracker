@@ -17,7 +17,7 @@ class UserDefaultsManager<T>: UserDefaultsManagerProtocol {
     // MARK: - Propeties
     var userDefaults: UserDefaults
     var total: Int
-    var defaultsReturnDataHandler: (([T]?, UserDefaultsError?) -> Void)
+    var defaultsReturnDataHandler: (([T]?, UserDefaultsError?) -> Void)?
 
     // MARK: - Init methods
 
@@ -26,10 +26,9 @@ class UserDefaultsManager<T>: UserDefaultsManagerProtocol {
     ///   - userDefaults: the user defaults instance, defautls to standard
     ///   - total: the total amount of objects to store
     ///   - closure: used as the return data handler
-    init(userDefaults: UserDefaults = .standard, total: Int = 20, closure: @escaping (([T]?, UserDefaultsError?) -> Void)) {
+    init(userDefaults: UserDefaults = .standard, total: Int = 20) {
         self.userDefaults = userDefaults
         self.total = total
-        self.defaultsReturnDataHandler = closure
     }
 }
 
@@ -48,24 +47,27 @@ final class WeatherUserDefaultsManager: UserDefaultsManager<WeatherRequest> {
     /// - Parameter key: value of objects
     func retriveObjectsFor(key: String) {
         guard let data = userDefaults.value(forKey: key) as? Data else {
-            defaultsReturnDataHandler(nil, UserDefaultsError.noObjectForTerm)
+            defaultsReturnDataHandler?(nil, UserDefaultsError.noObjectForTerm)
             return
         }
         let objects = try? PropertyListDecoder().decode([WeatherRequest].self, from: data)
-        defaultsReturnDataHandler(objects, nil)
+        defaultsReturnDataHandler?(objects, nil)
     }
 
     /// Deletes an object from array at specified index
     /// - Parameters:
     ///   - index: index in which to remove at
     ///   - key: key for object array
-    func deleteObject(index: Int, key: String) {
+    func deleteObject(object: WeatherRequest, key: String) {
         guard let data = userDefaults.value(forKey: key) as? Data else {
-            defaultsReturnDataHandler(nil, UserDefaultsError.noObjectForTerm)
+            defaultsReturnDataHandler?(nil, UserDefaultsError.noObjectForTerm)
             return
         }
         var objects = try? PropertyListDecoder().decode([WeatherRequest].self, from: data)
-        objects?.remove(at: index)
+        let object = objects?.filter({
+            $0.name == object.name
+        })
+        objects?.removeAll(where: {$0.name == object?.first?.name})
         userDefaults.updateWith(objects ?? [], key: key)
     }
     

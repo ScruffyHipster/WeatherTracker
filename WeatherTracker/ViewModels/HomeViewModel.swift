@@ -19,6 +19,11 @@ class HomeViewModel {
             weatherResultsManager.search(endpoint: .weather(currentLocation ?? ""))
         }
     }
+    var favouriteLocations = [WeatherRequest]() {
+        didSet {
+            homeViewTableViewDataSource.favourtieLocations = favouriteLocations
+        }
+    }
     
     var homeViewTableView: UITableView?
     var homeViewTableViewDataSource: HomeViewTableViewDataSource
@@ -70,7 +75,7 @@ class HomeViewModel {
 class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var currentCellData: WeatherCellInfo?
-    var favourtieLocations = [String]()
+    var favourtieLocations = [WeatherRequest]()
     private var locationCellIdentifier = Constants.TableViewIdentifiers.locationCell.id
     private var notSearchedCellIdentifier = Constants.TableViewIdentifiers.notSearchedCell.id
     

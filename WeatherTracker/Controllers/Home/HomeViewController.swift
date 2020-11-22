@@ -25,6 +25,11 @@ class HomeViewController: UIViewController {
         setUpController()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        coordinator?.syncUpUserDefaults()
+    }
+    
     /// Sets up the UI elements and their data models
     private func setUpController() {
         homeControllerDataSource?.delegate = self

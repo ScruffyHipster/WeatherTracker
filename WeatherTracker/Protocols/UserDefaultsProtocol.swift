@@ -11,5 +11,5 @@ import Foundation
 protocol UserDefaultsManagerProtocol {
     associatedtype Object
     var userDefaults: UserDefaults { get set }
-    var defaultsReturnDataHandler: (([Object]?, UserDefaultsError?) -> Void) { get set }
+    var defaultsReturnDataHandler: (([Object]?, UserDefaultsError?) -> Void)? { get set }
 }

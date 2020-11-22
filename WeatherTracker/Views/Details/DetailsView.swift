@@ -8,7 +8,7 @@
 import UIKit
 
 // The view for the details view controller
-class DetailsView: UIView {
+final class DetailsView: UIView {
     
     // MARK: - Outlets
     @IBOutlet weak var detailsImageView: UIImageView!

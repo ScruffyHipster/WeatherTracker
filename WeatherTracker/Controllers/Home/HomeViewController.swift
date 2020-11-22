@@ -64,15 +64,6 @@ class HomeViewController: UIViewController {
 // MARK: - Home controller data source delegate
 extension HomeViewController: HomeControllerDataSourceDelegate {
     
-    /// Handles the results oi user location request
-    /// - Parameter result: the result of the users location
-    func gotInitalLocationWeather(_ result: WeatherRequest) {
-        print(result)
-        //show this result in a results field table view
-        //for the user to select from
-        
-        //TODO:- we may need to get rid of this ⚠️
-    }
     
     /// Handles the result call back from the user search
     /// - Parameter result: the weather  result

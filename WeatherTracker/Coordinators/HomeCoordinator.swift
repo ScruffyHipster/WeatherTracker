@@ -11,7 +11,7 @@ import UIKit
 //and details view. Provides the view controllers with its view controllers
 //and datasources leaving the VC's to handle only what they need to be concerned with
 //data calls and view layout for example.
-class HomeCoordinator: Coordinator {
+final class HomeCoordinator: Coordinator {
     
     //MARK: - Properties
     var children: [Coordinator]?

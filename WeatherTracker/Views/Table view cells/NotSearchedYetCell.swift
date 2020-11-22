@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NotSearchedYetCell: UITableViewCell {
+final class NotSearchedYetCell: UITableViewCell {
     
     @IBOutlet weak var infoLable: UILabel!
     @IBOutlet weak var windImageView: UIImageView!

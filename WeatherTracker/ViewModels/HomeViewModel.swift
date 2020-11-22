@@ -8,7 +8,7 @@
 import UIKit
 
 /// View model for the home view
-class HomeViewModel {
+final class HomeViewModel {
     
     // MARK: - Properties
     var currentLocation: String? {
@@ -21,12 +21,9 @@ class HomeViewModel {
     }
     var favouriteLocations = [WeatherRequest]() {
         didSet {
-            
             homeViewTableViewDataSource.favouriteLocations = favouriteLocations.map({ $0.convertToCellData() })
-            
             //update the second section
             updateFavouriteSection()
-            
         }
     }
     var homeViewTableView: UITableView?
@@ -129,9 +126,10 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
             guard let cell = tableView.dequeueReusableCell(withIdentifier: locationCellIdentifier) as? LocationTableViewCell else {
                 fatalError("we should have a cell registered")
             }
+            cell.backgroundImageView.image = #imageLiteral(resourceName: "mountainImage")
             cell.locationTitleLabel.text = currentCellData?.location
             cell.countryLabel.text = currentCellData?.country
-            cell.tempDegreesLabel.text = "\(currentCellData?.temp ?? 0)°"
+            cell.tempDegreesLabel.text = "\(currentCellData?.temp ?? 0) °C"
             cell.windSpeedLabel.text = "\(currentCellData?.windSpeed ?? 0) mph"
             return cell
             
@@ -145,9 +143,10 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: locationCellIdentifier) as? LocationTableViewCell else {
                     fatalError("we should have a cell registered")
                 }
+                cell.backgroundImageView.image = #imageLiteral(resourceName: "cityImage")
                 cell.locationTitleLabel.text = favouriteLocations[indexPath.row].location
                 cell.countryLabel.text = favouriteLocations[indexPath.row].country
-                cell.tempDegreesLabel.text = "\(favouriteLocations[indexPath.row].temp)°"
+                cell.tempDegreesLabel.text = "\(favouriteLocations[indexPath.row].temp) °C"
                 cell.windSpeedLabel.text = "\(favouriteLocations[indexPath.row].windSpeed) mph"
                 return cell
             }

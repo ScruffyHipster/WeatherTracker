@@ -37,7 +37,6 @@
 		7572FB32256AB48D00471AB0 /* Mocker in Frameworks */ = {isa = PBXBuildFile; productRef = 7572FB31256AB48D00471AB0 /* Mocker */; };
 		7572FB43256AB52600471AB0 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572FB42256AB52600471AB0 /* NetworkTests.swift */; };
 		75819596256822B300321B3D /* DebounceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75819595256822B300321B3D /* DebounceProtocol.swift */; };
-		7581959B256822D300321B3D /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7581959A256822D300321B3D /* Debouncer.swift */; };
 		75B5292F256A9FB600A75789 /* NotificationName++Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B5292E256A9FB600A75789 /* NotificationName++Extensions.swift */; };
 		75B5293C256AAC9900A75789 /* PersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B5293B256AAC9900A75789 /* PersistenceTests.swift */; };
 		75BB1E25256ABB99005D88F1 /* WeatherData.json in Resources */ = {isa = PBXBuildFile; fileRef = 75BB1E24256ABB99005D88F1 /* WeatherData.json */; };
@@ -103,7 +102,6 @@
 		7538B10925683895001F0FA5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7572FB42256AB52600471AB0 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		75819595256822B300321B3D /* DebounceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebounceProtocol.swift; sourceTree = "<group>"; };
-		7581959A256822D300321B3D /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		75B5292E256A9FB600A75789 /* NotificationName++Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName++Extensions.swift"; sourceTree = "<group>"; };
 		75B5293B256AAC9900A75789 /* PersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTests.swift; sourceTree = "<group>"; };
 		75BB1E24256ABB99005D88F1 /* WeatherData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WeatherData.json; path = ../../../../Desktop/WeatherData.json; sourceTree = "<group>"; };
@@ -172,7 +170,6 @@
 				7517168525658A1C00129FBF /* Managers */,
 				751716572565809000129FBF /* Constants */,
 				7517163E25657ED900129FBF /* Protocols */,
-				7517163D25657EC700129FBF /* Resources */,
 				7517163C25657EBE00129FBF /* Coordinators */,
 				7517163B25657EB700129FBF /* Models */,
 				7517163A25657EB200129FBF /* Views */,
@@ -242,14 +239,6 @@
 				751716602565811600129FBF /* HomeCoordinator.swift */,
 			);
 			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		7517163D25657EC700129FBF /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				7581959A256822D300321B3D /* Debouncer.swift */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		7517163E25657ED900129FBF /* Protocols */ = {
@@ -558,7 +547,6 @@
 				7517160425657EA100129FBF /* AppDelegate.swift in Sources */,
 				75C9650425682CF5009DDF8C /* NotSearchedYetCell.swift in Sources */,
 				7518FD1925659766002094DD /* UserDefaults++Extentions.swift in Sources */,
-				7581959B256822D300321B3D /* Debouncer.swift in Sources */,
 				75B5292F256A9FB600A75789 /* NotificationName++Extensions.swift in Sources */,
 				7517160625657EA100129FBF /* SceneDelegate.swift in Sources */,
 				7518FD022565950C002094DD /* LocationTableViewCell.swift in Sources */,

@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "c000bd76d2281cb869f90dad507f41e5-green-forest-landscape-with-deer.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -10,14 +10,13 @@ import UIKit
 /// Delegate for the home view controller
 protocol HomeControllerDataSourceDelegate: class {
     
-    func gotInitalLocationWeather(_ result: WeatherRequest)
     func didGetResult(_ result: WeatherRequest)
     
 }
 
 
 /// Data source and delgate for the home view controller.
-class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
+final class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
     
     //MARK: - Outlets
     private var searchResultsManager: WeatherResultsManager<WeatherRequest>
@@ -32,12 +31,6 @@ class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
     }
     
     //MARK: - Methods
-    
-    private func getInitalLocationData() {
-        
-    }
-
-    
     private func setUpResultsHandler() {
         searchResultsManager.resultsHandler = { [weak self] in
             guard let self = self else { return }

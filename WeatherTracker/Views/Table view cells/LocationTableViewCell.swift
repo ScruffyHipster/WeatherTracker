@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LocationTableViewCell: UITableViewCell {
+final class LocationTableViewCell: UITableViewCell {
     
     @IBOutlet weak var backgroundContentView: UIView!
     @IBOutlet weak var locationTitleLabel: UILabel!
@@ -29,6 +29,7 @@ class LocationTableViewCell: UITableViewCell {
     }
     
     private func setUpView() {
+        backgroundImageView.addCornerRadiusOf(12)
         backgroundContentView.addCornerRadiusOf(12)
         backgroundContentView.addShadowLayer(colour: .black, radius: 2, offset: .init(width: 0, height: 2), opacity: 1)
     }

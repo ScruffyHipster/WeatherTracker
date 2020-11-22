@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailsViewModel {
+final class DetailsViewModel {
     
     weak var detailsView: DetailsView?
     var weatherRequestResult: WeatherRequest?
@@ -26,6 +26,7 @@ class DetailsViewModel {
     
     private func configure(view: DetailsView, with data: WeatherRequest) {
         toggleFavouriteButton(isFavourite)
+        view.detailsImageView.image = #imageLiteral(resourceName: "mountainImage")
         view.locationDetailsLabel.text = data.name
         view.countryLabel.text = data.sys.country
         view.conditionsLabel.text = data.weather.first?.weatherDescription

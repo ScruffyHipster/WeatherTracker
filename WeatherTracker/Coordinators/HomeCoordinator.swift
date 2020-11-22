@@ -24,6 +24,9 @@ class HomeCoordinator: Coordinator {
     private var detailsViewModel: DetailsViewModel?
     private var userDefaults: WeatherUserDefaultsManager?
     private var locationManager: LocationManager?
+    private var userDefaultsKey: String {
+        Constants.UserDefaultsIdentifiers.favouriteLocations.id
+    }
     
     lazy var homeController: HomeViewController = {
         var controller = HomeViewController.instantiate()
@@ -127,9 +130,7 @@ class HomeCoordinator: Coordinator {
                 guard let results = results,
                       let self = self
                 else { return }
-                if !results.isEmpty {
-                    self.homeViewModel.favouriteLocations = results
-                }
+                self.homeViewModel.favouriteLocations = results
                 return
             }
             //TODO:- handle the request
@@ -157,9 +158,9 @@ extension HomeCoordinator {
         if favourite {
             userDefaults?.save(data)
         } else {
-            userDefaults?.deleteObject(object: data, key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
-            //delete the object
+            userDefaults?.deleteObject(object: data, key: userDefaultsKey)
         }
+        userDefaults?.retriveObjectsFor(key: userDefaultsKey)
     }
     
 }

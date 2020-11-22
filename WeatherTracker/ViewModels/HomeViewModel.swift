@@ -23,6 +23,10 @@ class HomeViewModel {
         didSet {
             
             homeViewTableViewDataSource.favouriteLocations = favouriteLocations.map({ $0.convertToCellData() })
+            
+            //update the second section
+            updateFavouriteSection()
+            
         }
     }
     var homeViewTableView: UITableView?
@@ -58,6 +62,16 @@ class HomeViewModel {
                 //TODO: Handle error response
                 print(error)
             }
+        }
+    }
+    
+    /// Will reload the favourites section of the tableview
+    private func updateFavouriteSection() {
+        homeViewTableViewDataSource.favouriteLocations = favouriteLocations.map({ $0.convertToCellData()
+        })
+        let favouriteSection = IndexSet(integer: 1)
+        DispatchQueue.main.async {
+            self.homeViewTableView?.reloadSections(favouriteSection, with: .fade)
         }
     }
     
@@ -171,10 +185,12 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: - use a notification to open the object in details view
-        notifications.post(.init(name: .selectedFavouriteDetailsCell,
-                                 object: nil,
-                                 userInfo: [Constants.NotificationDictKeys.selectedCell.id : indexPath]))
+        if indexPath.section == 1 {
+            notifications.post(.init(name: .selectedFavouriteDetailsCell,
+                                     object: nil,
+                                     userInfo: [Constants.NotificationDictKeys.selectedCell.id : indexPath]))
+
+        }
     }
     
     

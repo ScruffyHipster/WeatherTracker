@@ -11,7 +11,6 @@ import Alamofire
 final class NetworkRequestor: NetworkRequestorProtocol  {
 
     var session: Session
-    let concurrentQueue = DispatchQueue(label: "NetworkRequestor", attributes: .concurrent)
 
     init(session: Session = .default) {
         self.session = session
@@ -26,10 +25,8 @@ final class NetworkRequestor: NetworkRequestorProtocol  {
     public func fetchDecodable<T: Decodable>(_ url: String, completion: @escaping (Result<T, AFError>) -> Void) {
         let request = self.session.request(url)
             .validate(statusCode: 200..<300)
-        request.responseDecodable(of: T.self, queue: self.concurrentQueue) { (response) in
-            self.concurrentQueue.async {
-                completion(response.result)
-            }
+        request.responseDecodable(of: T.self, queue: .main) { (response) in
+            completion(response.result)
         }
     }
     

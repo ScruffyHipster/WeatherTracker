@@ -7,21 +7,13 @@
 
 import UIKit
 
-/// Delegate for the home view controller
-protocol HomeControllerDataSourceDelegate: class {
-    
-    func gotInitalLocationWeather(_ result: WeatherRequest)
-    func didGetResult(_ result: WeatherRequest)
-    
-}
-
 class HomeViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var homeView: HomeView!
     
     // MARK: - Properties
-    weak var coordinator: Coordinator?
+    weak var coordinator: HomeCoordinator?
     var homeViewModel: HomeViewModel?
     var homeControllerDataSource: HomeViewControllerDataSource?
     
@@ -35,6 +27,7 @@ class HomeViewController: UIViewController {
     
     /// Sets up the UI elements and their data models
     private func setUpController() {
+        homeControllerDataSource?.delegate = self
         setUpHomeViewModel()
         setUpHomeView()
         setUpSearchBar()
@@ -73,14 +66,17 @@ extension HomeViewController: HomeControllerDataSourceDelegate {
         print(result)
         //show this result in a results field table view
         //for the user to select from
+        
+        //TODO:- we may need to get rid of this ⚠️
     }
     
     /// Handles the result call back from the user search
     /// - Parameter result: the weather  result
     func didGetResult(_ result: WeatherRequest) {
         //we can move to show this on the details view
-        
+        print(result)
         //make call to the coordinator for the next view
+        coordinator?.showDetailsViewWith(result)
     }
     
     

@@ -20,6 +20,7 @@ class HomeCoordinator: Coordinator {
     
     private var homeControllerDataSource: HomeViewControllerDataSource
     private var homeViewModel: HomeViewModel
+    private var detailsViewModel: DetailsViewModel?
     private var userDefaults: WeatherUserDefaultsManager?
     private var locationManager: LocationManager?
     
@@ -28,6 +29,13 @@ class HomeCoordinator: Coordinator {
         controller.coordinator = self
         controller.homeControllerDataSource = homeControllerDataSource
         controller.homeViewModel = homeViewModel
+        return controller
+    }()
+    
+    lazy var detailsController: DetailsViewController =  {
+        var controller = DetailsViewController.instantiate()
+        controller.coordinator = self
+        
         return controller
     }()
     
@@ -59,6 +67,18 @@ class HomeCoordinator: Coordinator {
         navigationController.pushViewController(homeController, animated: true)
     }
     
+    private func initDetailsViewController(with result: WeatherRequest) {
+        setUpDetailsViewModel()
+        detailsController.weatherResponse = result
+        self.navigationController.present(self.detailsController, animated: true)
+    }
+    
+    private func setUpDetailsViewModel() {
+        detailsViewModel = DetailsViewModel()
+        guard let detailsViewModel = detailsViewModel else { return }
+        detailsController.viewModel = detailsViewModel
+    }
+    
     private func setUpUserDefaults() {
         userDefaults?.retriveObjectsFor(key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
     }
@@ -79,5 +99,14 @@ class HomeCoordinator: Coordinator {
         locationManager?.start()
     }
     
+    
+}
+
+// MARK:  HomeViewController coordinator methods
+extension HomeCoordinator {
+    
+    func showDetailsViewWith(_ data: WeatherRequest) {
+        initDetailsViewController(with: data)
+    }
     
 }

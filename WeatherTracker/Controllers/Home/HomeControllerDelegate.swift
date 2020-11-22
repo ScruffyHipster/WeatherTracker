@@ -7,6 +7,15 @@
 
 import UIKit
 
+/// Delegate for the home view controller
+protocol HomeControllerDataSourceDelegate: class {
+    
+    func gotInitalLocationWeather(_ result: WeatherRequest)
+    func didGetResult(_ result: WeatherRequest)
+    
+}
+
+
 /// Data source and delgate for the home view controller.
 class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
     
@@ -50,6 +59,7 @@ extension HomeViewControllerDataSource: UISearchBarDelegate {
   
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchResultsManager.search(endpoint: .weather(searchBar.text ?? ""))
+        
     }
     
     //MARK: - Search results delegate

@@ -16,7 +16,7 @@ class DetailsViewController: UIViewController {
     
     // MARK:  Properties
     weak var coordinator: HomeCoordinator?
-    var viewModel: DetailsViewModel!
+    weak var viewModel: DetailsViewModel?
     var weatherResponse: WeatherRequest?
 
     // MARK:  Life cycle methods
@@ -27,18 +27,18 @@ class DetailsViewController: UIViewController {
     
     // MARK:  Methods
     private func setUp() {
-        viewModel.weatherRequestResult = weatherResponse
-        viewModel.detailsView = detailsView
-        viewModel.setUpView()
+        viewModel?.weatherRequestResult = weatherResponse
+        viewModel?.detailsView = detailsView
+        viewModel?.setUpView()
     }
     
     // MARK:  Actions
     @IBAction func didTapFavouriteButton(_ sender: Any) {
         
         //set the heart icon to filled
-        viewModel.didToggleFavouriteButton()
+        viewModel?.didToggleFavouriteButton()
         guard let weatherResponse = weatherResponse else { return }
-        coordinator?.didFavouriteWeatherLocation(viewModel.isFavourtie, weatherResponse)
+        coordinator?.didFavouriteWeatherLocation(viewModel?.isFavourite ?? false, weatherResponse)
     }
 
 }

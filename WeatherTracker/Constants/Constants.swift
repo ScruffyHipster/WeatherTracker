@@ -38,6 +38,16 @@ struct Constants {
         }
     }
     
+    enum NotificationDictKeys {
+        case selectedCell
+        
+        var id: String {
+            switch self {
+            case .selectedCell:
+                return "selectedCell"
+            }
+        }
+    }
 }
 
 enum StoryboardIdentifiers: String {

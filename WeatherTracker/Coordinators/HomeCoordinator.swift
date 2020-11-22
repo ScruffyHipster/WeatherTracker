@@ -20,6 +20,7 @@ class HomeCoordinator: Coordinator {
     
     private var homeControllerDataSource: HomeViewControllerDataSource
     private var homeViewModel: HomeViewModel
+    private var notification: NotificationCenter
     private var detailsViewModel: DetailsViewModel?
     private var userDefaults: WeatherUserDefaultsManager?
     private var locationManager: LocationManager?
@@ -31,19 +32,15 @@ class HomeCoordinator: Coordinator {
         controller.homeViewModel = homeViewModel
         return controller
     }()
-    
-    lazy var detailsController: DetailsViewController =  {
-        var controller = DetailsViewController.instantiate()
-        controller.coordinator = self
-        
-        return controller
-    }()
+    var detailsController: DetailsViewController?
     
     //MARK: - Life cycle methods
     init(navController: UINavigationController,
          homeControllerDataSource: HomeViewControllerDataSource = HomeViewControllerDataSource(),
          homeViewModel: HomeViewModel = HomeViewModel(),
-         userDefaults: WeatherUserDefaultsManager = WeatherUserDefaultsManager(userDefaults: .standard)) {
+         userDefaults: WeatherUserDefaultsManager = WeatherUserDefaultsManager(userDefaults: .standard),
+         notification: NotificationCenter = NotificationCenter.default) {
+        self.notification = notification
         self.navigationController = navController
         self.homeControllerDataSource = homeControllerDataSource
         self.homeViewModel = homeViewModel
@@ -53,6 +50,7 @@ class HomeCoordinator: Coordinator {
     //MARK: - Methods
     func start() {
         setUpUserDefaults()
+        setUpNotificationManager()
         setUpLocationManager()
         initHomeViewController()
     }
@@ -67,21 +65,26 @@ class HomeCoordinator: Coordinator {
     /// Init the details view controller
     /// - Parameter result: weather result to present
     private func initDetailsViewController(with result: WeatherRequest) {
+        detailsController = DetailsViewController.instantiate()
+        detailsController?.coordinator = self
         setUpDetailsViewModel()
         //check if in favourties and set whether favourtied
+        
         let isFavourite = homeViewModel.favouriteLocations.filter({
             $0.name == result.name
         })
-        detailsController.viewModel.isFavourtie = isFavourite.count == 1
-        detailsController.weatherResponse = result
-        self.navigationController.present(self.detailsController, animated: true)
+        detailsController?.viewModel?.isFavourite = isFavourite.count == 1
+        
+        detailsController?.weatherResponse = result
+        guard let detailsController = detailsController else { return }
+        self.navigationController.present(detailsController, animated: true)
     }
     
     /// setup the details view model to pass to the details vc
     private func setUpDetailsViewModel() {
         detailsViewModel = DetailsViewModel()
         guard let detailsViewModel = detailsViewModel else { return }
-        detailsController.viewModel = detailsViewModel
+        detailsController?.viewModel = detailsViewModel
     }
     
     /// Sets up the location manager used to get users current location
@@ -99,6 +102,20 @@ class HomeCoordinator: Coordinator {
         }
         
         locationManager?.start()
+    }
+    
+    private func setUpNotificationManager() {
+        notification.addObserver(forName: .selectedFavouriteDetailsCell,
+                                 object: nil,
+                                 queue: .main) { [weak self] (notification) in
+            guard let self = self,
+                  let userInfo = notification.userInfo,
+                  let indexPath = userInfo[Constants.NotificationDictKeys.selectedCell.id] as? IndexPath else {return}
+            //we have the index so now we can find it in the
+            //table view data souce
+            self.initDetailsViewController(with: self.homeViewModel.favouriteLocations[indexPath.row])
+            
+        }
     }
     
     private func setUpUserDefaults() {

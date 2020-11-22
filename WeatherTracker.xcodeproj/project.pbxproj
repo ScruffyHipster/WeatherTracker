@@ -37,6 +37,7 @@
 		7538B10A25683895001F0FA5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7538B10925683895001F0FA5 /* LocationManager.swift */; };
 		75819596256822B300321B3D /* DebounceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75819595256822B300321B3D /* DebounceProtocol.swift */; };
 		7581959B256822D300321B3D /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7581959A256822D300321B3D /* Debouncer.swift */; };
+		75B5292F256A9FB600A75789 /* NotificationName++Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B5292E256A9FB600A75789 /* NotificationName++Extensions.swift */; };
 		75C9650425682CF5009DDF8C /* NotSearchedYetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C9650325682CF5009DDF8C /* NotSearchedYetCell.swift */; };
 		75C9650E25683332009DDF8C /* UIView++Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C9650D25683332009DDF8C /* UIView++Extensions.swift */; };
 		75D3A49B2568477B001A3D3B /* WeatherCellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D3A49A2568477B001A3D3B /* WeatherCellInfo.swift */; };
@@ -100,6 +101,7 @@
 		7538B10925683895001F0FA5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		75819595256822B300321B3D /* DebounceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebounceProtocol.swift; sourceTree = "<group>"; };
 		7581959A256822D300321B3D /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
+		75B5292E256A9FB600A75789 /* NotificationName++Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName++Extensions.swift"; sourceTree = "<group>"; };
 		75C9650325682CF5009DDF8C /* NotSearchedYetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSearchedYetCell.swift; sourceTree = "<group>"; };
 		75C9650D25683332009DDF8C /* UIView++Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView++Extensions.swift"; sourceTree = "<group>"; };
 		75D3A49A2568477B001A3D3B /* WeatherCellInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCellInfo.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 			children = (
 				7518FD1825659766002094DD /* UserDefaults++Extentions.swift */,
 				75C9650D25683332009DDF8C /* UIView++Extensions.swift */,
+				75B5292E256A9FB600A75789 /* NotificationName++Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				75C9650425682CF5009DDF8C /* NotSearchedYetCell.swift in Sources */,
 				7518FD1925659766002094DD /* UserDefaults++Extentions.swift in Sources */,
 				7581959B256822D300321B3D /* Debouncer.swift in Sources */,
+				75B5292F256A9FB600A75789 /* NotificationName++Extensions.swift in Sources */,
 				7517160625657EA100129FBF /* SceneDelegate.swift in Sources */,
 				7518FD022565950C002094DD /* LocationTableViewCell.swift in Sources */,
 				7517169925658BA100129FBF /* NetworkRequestorProtocol.swift in Sources */,

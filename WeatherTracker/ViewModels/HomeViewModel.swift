@@ -21,10 +21,10 @@ class HomeViewModel {
     }
     var favouriteLocations = [WeatherRequest]() {
         didSet {
-            homeViewTableViewDataSource.favourtieLocations = favouriteLocations
+            
+            homeViewTableViewDataSource.favouriteLocations = favouriteLocations.map({ $0.convertToCellData() })
         }
     }
-    
     var homeViewTableView: UITableView?
     var homeViewTableViewDataSource: HomeViewTableViewDataSource
     private var weatherResultsManager: WeatherResultsManager<WeatherRequest>
@@ -74,10 +74,16 @@ class HomeViewModel {
 /// The table view data source for the apps home view table view.
 class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
+    // MARK:  Properties
+    var notifications: NotificationCenter
     var currentCellData: WeatherCellInfo?
-    var favourtieLocations = [WeatherRequest]()
+    var favouriteLocations = [WeatherCellInfo]()
     private var locationCellIdentifier = Constants.TableViewIdentifiers.locationCell.id
     private var notSearchedCellIdentifier = Constants.TableViewIdentifiers.notSearchedCell.id
+    
+    init(notificationCenter: NotificationCenter = NotificationCenter.default) {
+        self.notifications = notificationCenter
+    }
     
     // MARK: - Table view data souce
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,7 +91,7 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
         case 0:
             return 1
         case 1:
-            return favourtieLocations.isEmpty ? 1 : favourtieLocations.count
+            return favouriteLocations.isEmpty ? 1 : favouriteLocations.count
         default:
             fatalError("There should only be two sections maximum")
             break
@@ -97,7 +103,7 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
         case 0:
             return 120
         case 1:
-            return 180
+            return favouriteLocations.isEmpty ? 180 : 120
         default:
             return tableView.estimatedRowHeight
         }
@@ -116,13 +122,21 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
             return cell
             
         case 1:
-            let cell: UITableViewCell?
-            if favourtieLocations.isEmpty {
-                cell = tableView.dequeueReusableCell(withIdentifier: notSearchedCellIdentifier)
+            if favouriteLocations.isEmpty {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: notSearchedCellIdentifier) else {
+                    return UITableViewCell()
+                }
+                return cell
             } else {
-                cell = UITableViewCell()
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: locationCellIdentifier) as? LocationTableViewCell else {
+                    fatalError("we should have a cell registered")
+                }
+                cell.locationTitleLabel.text = favouriteLocations[indexPath.row].location
+                cell.countryLabel.text = favouriteLocations[indexPath.row].country
+                cell.tempDegreesLabel.text = "\(favouriteLocations[indexPath.row].temp)°"
+                cell.windSpeedLabel.text = "\(favouriteLocations[indexPath.row].windSpeed) mph"
+                return cell
             }
-            return cell ?? UITableViewCell()
         default:
             fatalError("There should only be two sections maximum")
         }
@@ -155,5 +169,13 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
         }
         return sectionHeader
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //TODO: - use a notification to open the object in details view
+        notifications.post(.init(name: .selectedFavouriteDetailsCell,
+                                 object: nil,
+                                 userInfo: [Constants.NotificationDictKeys.selectedCell.id : indexPath]))
+    }
+    
     
 }

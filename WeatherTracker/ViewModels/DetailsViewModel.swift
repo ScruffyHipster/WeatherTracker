@@ -9,9 +9,9 @@ import UIKit
 
 class DetailsViewModel {
     
-    var detailsView: DetailsView!
+    weak var detailsView: DetailsView?
     var weatherRequestResult: WeatherRequest?
-    var isFavourtie = false
+    var isFavourite = false
     
     lazy var numberFormatter: NumberFormatter = { NumberFormatter() }()
     
@@ -25,7 +25,7 @@ class DetailsViewModel {
     }
     
     private func configure(view: DetailsView, with data: WeatherRequest) {
-        toggleFavouriteButton(isFavourtie)
+        toggleFavouriteButton(isFavourite)
         view.locationDetailsLabel.text = data.name
         view.countryLabel.text = data.sys.country
         view.conditionsLabel.text = data.weather.first?.weatherDescription
@@ -36,8 +36,8 @@ class DetailsViewModel {
     func didToggleFavouriteButton() {
         //set weather request result to opposite of current
         //favourite state
-        isFavourtie = !isFavourtie
-        toggleFavouriteButton(isFavourtie)
+        isFavourite = !isFavourite
+        toggleFavouriteButton(isFavourite)
     }
     
     private func toggleFavouriteButton(_ favourited: Bool) {

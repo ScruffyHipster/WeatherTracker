@@ -9,9 +9,11 @@ import UIKit
 
 
 /// The view for the main view controller
-class HomeView: UIView {
+final class HomeView: UIView {
     
-    weak var homeViewModel: HomeViewModel?
+    // MARK: - Outlets
+    @IBOutlet weak var tableView: UITableView!
+    
     
 }
 

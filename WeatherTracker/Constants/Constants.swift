@@ -7,7 +7,48 @@
 
 import UIKit
 
+///File for storing constants through out application
+struct Constants {
+    // MARK: - Static Strings
+    static let apiKey = "API_KEY"
+    static let baseURL = "BASE_URL"
 
+    enum UserDefaultsIdentifiers {
+        case favouriteLocations
+
+        var id: String {
+            switch self {
+            case .favouriteLocations:
+                return "FavouriteLocations"
+            }
+        }
+    }
+    
+    enum TableViewIdentifiers {
+        case locationCell
+        case notSearchedCell
+        
+        var id: String {
+            switch self {
+            case .locationCell:
+                return "LocationCell"
+            case .notSearchedCell:
+                return "NotSearchedCell"
+            }
+        }
+    }
+    
+    enum NotificationDictKeys {
+        case selectedCell
+        
+        var id: String {
+            switch self {
+            case .selectedCell:
+                return "selectedCell"
+            }
+        }
+    }
+}
 
 enum StoryboardIdentifiers: String {
     case main = "Main"
@@ -19,6 +60,16 @@ enum StoryboardIdentifiers: String {
     }
 }
 
+enum Endpoints {
+    case weather(String)
 
+    var endpoint: String {
+        switch self {
+        case .weather(let city):
+            return "q=\(city)"
+        }
+    }
+    
+}
 
 

@@ -9,10 +9,11 @@ import UIKit
 
 /// Provides conformamc for protocols
 protocol Coordinator: class {
-
+    
     var children: [Coordinator]? { get set }
     var navigationController: UINavigationController { get set }
-
+    
     func start()
+    
 }
 

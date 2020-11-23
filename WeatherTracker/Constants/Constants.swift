@@ -26,12 +26,15 @@ struct Constants {
     
     enum TableViewIdentifiers {
         case locationCell
+        case favouriteCell
         case notSearchedCell
         
         var id: String {
             switch self {
             case .locationCell:
                 return "LocationCell"
+            case .favouriteCell:
+                return "FavouriteCell"
             case .notSearchedCell:
                 return "NotSearchedCell"
             }

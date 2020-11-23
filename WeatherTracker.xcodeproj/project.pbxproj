@@ -36,6 +36,7 @@
 		75295A5D256C1F86001AE78E /* WeatherData.json in Resources */ = {isa = PBXBuildFile; fileRef = 75295A5C256C1F86001AE78E /* WeatherData.json */; };
 		75295A71256C2001001AE78E /* HomeControllerDatasourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75295A70256C2001001AE78E /* HomeControllerDatasourceDelegate.swift */; };
 		75295A76256C2036001AE78E /* LocationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75295A75256C2036001AE78E /* LocationManagerProtocol.swift */; };
+		75295A81256C327E001AE78E /* FavouriteTableviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75295A80256C327E001AE78E /* FavouriteTableviewCell.swift */; };
 		7538B10A25683895001F0FA5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7538B10925683895001F0FA5 /* LocationManager.swift */; };
 		7572FB32256AB48D00471AB0 /* Mocker in Frameworks */ = {isa = PBXBuildFile; productRef = 7572FB31256AB48D00471AB0 /* Mocker */; };
 		7572FB43256AB52600471AB0 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7572FB42256AB52600471AB0 /* NetworkTests.swift */; };
@@ -104,6 +105,7 @@
 		75295A5C256C1F86001AE78E /* WeatherData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WeatherData.json; path = ../../../../Desktop/ToSort/skyTest/WeatherData.json; sourceTree = "<group>"; };
 		75295A70256C2001001AE78E /* HomeControllerDatasourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerDatasourceDelegate.swift; sourceTree = "<group>"; };
 		75295A75256C2036001AE78E /* LocationManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerProtocol.swift; sourceTree = "<group>"; };
+		75295A80256C327E001AE78E /* FavouriteTableviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteTableviewCell.swift; sourceTree = "<group>"; };
 		7538B10925683895001F0FA5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7572FB42256AB52600471AB0 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		75B5292E256A9FB600A75789 /* NotificationName++Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName++Extensions.swift"; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 			children = (
 				7518FD012565950C002094DD /* LocationTableViewCell.swift */,
 				75C9650325682CF5009DDF8C /* NotSearchedYetCell.swift */,
+				75295A80256C327E001AE78E /* FavouriteTableviewCell.swift */,
 			);
 			path = "Table view cells";
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				7518FD022565950C002094DD /* LocationTableViewCell.swift in Sources */,
 				7517169925658BA100129FBF /* NetworkRequestorProtocol.swift in Sources */,
 				751716612565811600129FBF /* HomeCoordinator.swift in Sources */,
+				75295A81256C327E001AE78E /* FavouriteTableviewCell.swift in Sources */,
 				751716592565809C00129FBF /* Constants.swift in Sources */,
 				7518FD0B256596B9002094DD /* UserDefaultsManager.swift in Sources */,
 				75171681256589E800129FBF /* ResultsManagerProtocol.swift in Sources */,

@@ -65,6 +65,12 @@ class HomeViewController: UIViewController {
 extension HomeViewController: HomeControllerDataSourceDelegate {
     
     
+    /// Present the alert error
+    /// - Parameter error: alert error to show to user
+    func presentError(_ error: UIAlertController) {
+        present(error, animated: true)
+    }
+    
     /// Handles the result call back from the user search
     /// - Parameter result: the weather  result
     func didGetResult(_ result: WeatherRequest) {

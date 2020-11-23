@@ -40,6 +40,7 @@
 		75B5292F256A9FB600A75789 /* NotificationName++Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B5292E256A9FB600A75789 /* NotificationName++Extensions.swift */; };
 		75B5293C256AAC9900A75789 /* PersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B5293B256AAC9900A75789 /* PersistenceTests.swift */; };
 		75BB1E25256ABB99005D88F1 /* WeatherData.json in Resources */ = {isa = PBXBuildFile; fileRef = 75BB1E24256ABB99005D88F1 /* WeatherData.json */; };
+		75BB1E33256BA727005D88F1 /* UIAlert++Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB1E32256BA727005D88F1 /* UIAlert++Extensions.swift */; };
 		75C9650425682CF5009DDF8C /* NotSearchedYetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C9650325682CF5009DDF8C /* NotSearchedYetCell.swift */; };
 		75C9650E25683332009DDF8C /* UIView++Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C9650D25683332009DDF8C /* UIView++Extensions.swift */; };
 		75D3A49B2568477B001A3D3B /* WeatherCellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D3A49A2568477B001A3D3B /* WeatherCellInfo.swift */; };
@@ -105,6 +106,7 @@
 		75B5292E256A9FB600A75789 /* NotificationName++Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName++Extensions.swift"; sourceTree = "<group>"; };
 		75B5293B256AAC9900A75789 /* PersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTests.swift; sourceTree = "<group>"; };
 		75BB1E24256ABB99005D88F1 /* WeatherData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WeatherData.json; path = ../../../../Desktop/WeatherData.json; sourceTree = "<group>"; };
+		75BB1E32256BA727005D88F1 /* UIAlert++Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlert++Extensions.swift"; sourceTree = "<group>"; };
 		75C9650325682CF5009DDF8C /* NotSearchedYetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSearchedYetCell.swift; sourceTree = "<group>"; };
 		75C9650D25683332009DDF8C /* UIView++Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView++Extensions.swift"; sourceTree = "<group>"; };
 		75D3A49A2568477B001A3D3B /* WeatherCellInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCellInfo.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				7518FD1825659766002094DD /* UserDefaults++Extentions.swift */,
 				75C9650D25683332009DDF8C /* UIView++Extensions.swift */,
 				75B5292E256A9FB600A75789 /* NotificationName++Extensions.swift */,
+				75BB1E32256BA727005D88F1 /* UIAlert++Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				751716762565858D00129FBF /* HomeViewModel.swift in Sources */,
 				751716CE25658F7600129FBF /* WeatherRequest.swift in Sources */,
 				7517169E25658CBD00129FBF /* NetworkEnviroment.swift in Sources */,
+				75BB1E33256BA727005D88F1 /* UIAlert++Extensions.swift in Sources */,
 				7538B10A25683895001F0FA5 /* LocationManager.swift in Sources */,
 				7517164D25657FCC00129FBF /* Storyboarded.swift in Sources */,
 				75D3A4C4256A7996001A3D3B /* DetailsViewModel.swift in Sources */,

@@ -55,11 +55,12 @@ final class HomeCoordinator: Coordinator {
         setUpUserDefaults()
         setUpNotificationManager()
         setUpLocationManager()
+        setUpNavbar()
         initHomeViewController()
     }
     
     // MARK:  VC init methods
-    
+
     /// Sets up the inital home view controller
     private func initHomeViewController() {
         navigationController.pushViewController(homeController, animated: true)
@@ -107,6 +108,12 @@ final class HomeCoordinator: Coordinator {
         locationManager?.start()
     }
     
+    private func setUpNavbar() {
+        navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationBar.backgroundColor = .white
+    }
+    
+    /// Sets up the notifications manager
     private func setUpNotificationManager() {
         notification.addObserver(forName: .selectedFavouriteDetailsCell,
                                  object: nil,
@@ -121,6 +128,7 @@ final class HomeCoordinator: Coordinator {
         }
     }
     
+    /// Sets up the user defaults for data persistence
     private func setUpUserDefaults() {
         userDefaults?.defaultsReturnDataHandler = { [weak self] (results, error) in
             //search the user defaults for favourite
@@ -133,11 +141,11 @@ final class HomeCoordinator: Coordinator {
                 self.homeViewModel.favouriteLocations = results
                 return
             }
-            //TODO:- handle the request
             print(error)
+            let errorAlert = UIAlertController.createError(body: error.localizedDescription)
+            self?.homeController.present(errorAlert, animated: true)
         }
     }
-    
     
 }
 
@@ -149,10 +157,16 @@ extension HomeCoordinator {
         userDefaults?.retriveObjectsFor(key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
     }
     
+    /// Prepare the details view
+    /// - Parameter data: the data to be presented
     func showDetailsViewWith(_ data: WeatherRequest) {
         initDetailsViewController(with: data)
     }
     
+    /// Handle selecting a location to save
+    /// - Parameters:
+    ///   - favourite: whether this is to save or remove
+    ///   - data: this particular location
     func didFavouriteWeatherLocation(_ favourite: Bool, _ data: WeatherRequest) {
         //we need to store the weather request in user defaults
         if favourite {

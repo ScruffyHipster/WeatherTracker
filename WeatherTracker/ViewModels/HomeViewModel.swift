@@ -26,6 +26,8 @@ final class HomeViewModel {
             updateFavouriteSection()
         }
     }
+    
+    weak var delegate: HomeControllerDataSourceDelegate?
     var homeViewTableView: UITableView?
     var homeViewTableViewDataSource: HomeViewTableViewDataSource
     private var weatherResultsManager: WeatherResultsManager<WeatherRequest>
@@ -33,7 +35,7 @@ final class HomeViewModel {
     // MARK: - Lifecycle methods
     init(homeViewTableViewDataSource: HomeViewTableViewDataSource = HomeViewTableViewDataSource(),
          resultsManager: WeatherResultsManager<WeatherRequest> = WeatherResultsManager<WeatherRequest>()
-         ) {
+    ) {
         self.homeViewTableViewDataSource = homeViewTableViewDataSource
         self.weatherResultsManager = resultsManager
     }
@@ -55,9 +57,11 @@ final class HomeViewModel {
                     self.homeViewTableViewDataSource.currentCellData = response.convertToCellData()
                     self.homeViewTableView?.reloadRows(at: [cellIndex], with: .fade)
                 }
-                case .failure(let error):
+            case .failure(let error):
                 //TODO: Handle error response
-                print(error)
+                let errorAlert = UIAlertController.createError(body: error.localizedDescription)
+                self.delegate?.presentError(errorAlert)
+                
             }
         }
     }
@@ -175,7 +179,6 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
             sectionHeader.sectionHeaderLabel.text = "Current location"
             let locationImage = UIImage(systemName: "location")
             sectionHeader.sectionImageView.image = locationImage
-            
         case 1:
             sectionHeader.sectionHeaderLabel.text = "Favourite locations"
             sectionHeader.sectionImageView.image = UIImage(systemName: "star")
@@ -190,7 +193,7 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
             notifications.post(.init(name: .selectedFavouriteDetailsCell,
                                      object: nil,
                                      userInfo: [Constants.NotificationDictKeys.selectedCell.id : indexPath]))
-
+            
         }
     }
     

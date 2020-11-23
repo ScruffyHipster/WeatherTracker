@@ -12,6 +12,8 @@ protocol HomeControllerDataSourceDelegate: class {
     
     func didGetResult(_ result: WeatherRequest)
     
+    func presentError(_ error: UIAlertController)
+    
 }
 
 
@@ -41,7 +43,8 @@ final class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
                 //display the results to the user
             case .failure(let error):
                 //show an error that no results we're found
-                print(error.errorDescription ?? "")
+                let errorAlert = UIAlertController.createError(body: error.errorDescription ?? "")
+                self.delegate?.presentError(errorAlert)
             }
         }
     }

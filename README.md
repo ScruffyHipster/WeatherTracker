@@ -58,6 +58,12 @@ The app requires the user location to determine the current forecast of the curr
 
 The home page featuers the current location cell at the top of the table view and the favourites section. 
 
+<p float="left">
+<img src="https://user-images.githubusercontent.com/14076860/99994599-1b92d100-2db1-11eb-9c1f-402bf4e9724f.png" width="200" />
+<img src="https://user-images.githubusercontent.com/14076860/99994689-3feead80-2db1-11eb-890e-bb9634dd3fa9.png" width="200" />
+<img src="https://user-images.githubusercontent.com/14076860/99994716-4aa94280-2db1-11eb-87f7-89ebaf7fa59d.png" width="200" />
+</p>
+
 #### No favourites
 
 The favourites section will show an instructional cell when no favourites are stored. 

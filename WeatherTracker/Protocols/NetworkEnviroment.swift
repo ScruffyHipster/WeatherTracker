@@ -9,6 +9,10 @@ import Foundation
 
 /// Provides a individual enviroment for network contexts
 protocol NetworkEnviroment {
+    
     var apiKey: String { get }
     var baseUrlString: String { get }
+    
+    func createUrl(endpoint: Endpoints) -> String
+    
 }

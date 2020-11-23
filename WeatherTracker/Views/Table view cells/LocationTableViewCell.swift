@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Cell which displays a location
 final class LocationTableViewCell: UITableViewCell {
     
     @IBOutlet weak var backgroundContentView: UIView!
@@ -16,16 +17,10 @@ final class LocationTableViewCell: UITableViewCell {
     @IBOutlet weak var tempDegreesLabel: UILabel!
     @IBOutlet weak var windDirectionImage: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpView()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     private func setUpView() {
@@ -33,5 +28,5 @@ final class LocationTableViewCell: UITableViewCell {
         backgroundContentView.addCornerRadiusOf(12)
         backgroundContentView.addShadowLayer(colour: .black, radius: 2, offset: .init(width: 0, height: 2), opacity: 1)
     }
-
+    
 }

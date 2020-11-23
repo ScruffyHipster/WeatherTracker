@@ -8,6 +8,8 @@
 import UIKit
 
 /// View model for the home view
+/// handles conversion of data to the UI layer
+/// handles a network call and the table view datasource
 final class HomeViewModel {
     
     // MARK: - Properties
@@ -51,17 +53,14 @@ final class HomeViewModel {
             switch result {
             case .success(let response):
                 //show the results in a modal
-                print(response)
                 let cellIndex = IndexPath(row: 0, section: 0)
                 DispatchQueue.main.async {
                     self.homeViewTableViewDataSource.currentCellData = response.convertToCellData()
                     self.homeViewTableView?.reloadRows(at: [cellIndex], with: .fade)
                 }
             case .failure(let error):
-                //TODO: Handle error response
                 let errorAlert = UIAlertController.createError(body: error.localizedDescription)
                 self.delegate?.presentError(errorAlert)
-                
             }
         }
     }

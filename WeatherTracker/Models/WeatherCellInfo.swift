@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Model which represents the data that can be displayed in a table view cell
 struct WeatherCellInfo {
     
     var location: String

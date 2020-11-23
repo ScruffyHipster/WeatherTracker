@@ -8,16 +8,10 @@
 import UIKit
 import CoreLocation
 
-protocol LocationManagerProtocol: class {
-    var manager: CLLocationManager? { get }
-    var handler: ((CLPlacemark?, Error?) -> Void)? { get set }
-    
-    func start()
-}
-
 /// Location manager and CLLocationManagerDelegate.
-/// 
-class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDelegate {
+/// Request the users location and parses the result for passback
+/// via the handler to the requestor
+final class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDelegate {
     
     
     //MARK: - Properties
@@ -43,7 +37,7 @@ class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDeleg
             decodeCityFrom(location)
         }
     }
-
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to find user's location: \(error.localizedDescription)")
         handler?(nil, error)

@@ -25,7 +25,7 @@ final class DetailsView: UIView {
         super.awakeFromNib()
         setUpView()
     }
-
+    
     private func setUpView() {
         buttonContainerView.addCornerRadiusOf(favouriteButton.frame.width / 2)
         buttonContainerView.addShadowLayer(colour: .gray, radius: 6, offset: .init(width: 0, height: 2), opacity: 0.8)

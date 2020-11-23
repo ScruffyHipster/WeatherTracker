@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-
+    
     /// Adds corner radius
     /// - Parameters:
     ///   - radius: the desired corner radius
@@ -22,7 +22,7 @@ extension UIView {
         self.layer.cornerRadius = radius
         self.layer.maskedCorners = corners
     }
-
+    
     /// Add shadow layer to the view that calls this function
     /// - Parameter colour: Color of the shadow
     /// - Parameter radius: radius of the shadow from the view

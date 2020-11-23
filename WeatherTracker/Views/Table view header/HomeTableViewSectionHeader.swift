@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// header for the table view sections
 final class HomeTableViewSectionHeader: UITableViewHeaderFooterView {
     
     //MARK: - Outlets 
@@ -16,7 +17,7 @@ final class HomeTableViewSectionHeader: UITableViewHeaderFooterView {
     static let reuseIdentifier: String = String(describing: self)
     
     static var nib: UINib {
-           return UINib(nibName: String(describing: self), bundle: nil)
-       }
+        return UINib(nibName: String(describing: self), bundle: nil)
+    }
     
 }

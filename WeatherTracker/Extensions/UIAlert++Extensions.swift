@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIAlertController {
-
+    
     /// Creates and returns an alert with the confirgured actions
     /// - Parameters:
     ///   - style: alert or sheet
@@ -29,7 +29,7 @@ extension UIAlertController {
         actions.forEach({alert.addAction($0)})
         return alert
     }
-
+    
     /// Creates and returns an error alert with the confirgured actions
     /// - Parameters:
     ///   - style: alert or sheet

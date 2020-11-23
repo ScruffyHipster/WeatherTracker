@@ -7,7 +7,8 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+/// Handles the home view and communication with the coordinator
+final class HomeViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var homeView: HomeView!
@@ -58,12 +59,11 @@ class HomeViewController: UIViewController {
         searchController?.searchBar.placeholder = "Search for a location"
         navigationItem.searchController = searchController
     }
-
+    
 }
 
 // MARK: - Home controller data source delegate
 extension HomeViewController: HomeControllerDataSourceDelegate {
-    
     
     /// Present the alert error
     /// - Parameter error: alert error to show to user
@@ -79,7 +79,6 @@ extension HomeViewController: HomeControllerDataSourceDelegate {
         //make call to the coordinator for the next view
         coordinator?.showDetailsViewWith(result)
     }
-    
     
 }
 

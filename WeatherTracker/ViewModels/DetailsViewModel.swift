@@ -7,14 +7,17 @@
 
 import UIKit
 
+/// Hnadles configuring the data for presentation on the details view
 final class DetailsViewModel {
     
+    // MARK:  Properties
     weak var detailsView: DetailsView?
     var weatherRequestResult: WeatherRequest?
     var isFavourite = false
     
     lazy var numberFormatter: NumberFormatter = { NumberFormatter() }()
     
+    // MARK:  Methods
     func setUpView() {
         guard let detailsView = detailsView,
               let weatherResult = weatherRequestResult

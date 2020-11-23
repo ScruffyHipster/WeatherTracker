@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Hnadles the details view and the models required
 final class DetailsViewController: UIViewController {
     
     // MARK:  Outlets
@@ -16,7 +17,7 @@ final class DetailsViewController: UIViewController {
     weak var coordinator: HomeCoordinator?
     weak var viewModel: DetailsViewModel?
     var weatherResponse: WeatherRequest?
-
+    
     // MARK:  Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +33,12 @@ final class DetailsViewController: UIViewController {
     
     // MARK:  Actions
     @IBAction func didTapFavouriteButton(_ sender: Any) {
-        
         //set the heart icon to filled
         viewModel?.didToggleFavouriteButton()
         guard let weatherResponse = weatherResponse else { return }
         coordinator?.didFavouriteWeatherLocation(viewModel?.isFavourite ?? false, weatherResponse)
     }
-
+    
 }
 
 // MARK:  Storyborded

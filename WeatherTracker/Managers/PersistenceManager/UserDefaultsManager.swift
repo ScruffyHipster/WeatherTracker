@@ -7,19 +7,21 @@
 
 import Foundation
 
+/// Errors for use with user defaults
 enum UserDefaultsError: Error {
     case noObjectForTerm
 }
 
 /// Handles read and write access to user defaults
+/// Acts as a wrapper giving access to the only required methods to save, retrive and update.
 class UserDefaultsManager<T>: UserDefaultsManagerProtocol {
-
+    
     // MARK: - Propeties
     var userDefaults: UserDefaults
     var defaultsReturnDataHandler: (([T]?, UserDefaultsError?) -> Void)?
-
+    
     // MARK: - Init methods
-
+    
     /// Init method for user defaults manager
     /// - Parameters:
     ///   - userDefaults: the user defaults instance, defautls to standard
@@ -39,11 +41,14 @@ final class WeatherUserDefaultsManager: UserDefaultsManager<WeatherRequest> {
     func save(_ object: WeatherRequest) {
         userDefaults.saveItem(object)
     }
-
+    
     /// Retrive objects
     /// - Parameter key: value of objects
     func retriveObjectsFor(key: String) {
         guard let data = userDefaults.value(forKey: key) as? Data else {
+            //check here for data. If theres no data because non has been saved
+            //then we pass back nothing. This prevent an error being dispalyed
+            //to the user incorrectly.
             let data = userDefaults.value(forKey: key) as? Data
             if data != nil {
                 defaultsReturnDataHandler?(nil, UserDefaultsError.noObjectForTerm)
@@ -53,7 +58,7 @@ final class WeatherUserDefaultsManager: UserDefaultsManager<WeatherRequest> {
         let objects = try? PropertyListDecoder().decode([WeatherRequest].self, from: data)
         defaultsReturnDataHandler?(objects, nil)
     }
-
+    
     /// Deletes an object from array at specified index
     /// - Parameters:
     ///   - index: index in which to remove at

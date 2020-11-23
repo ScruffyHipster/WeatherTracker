@@ -7,15 +7,6 @@
 
 import UIKit
 
-/// Delegate for the home view controller
-protocol HomeControllerDataSourceDelegate: class {
-    
-    func didGetResult(_ result: WeatherRequest)
-    
-    func presentError(_ error: UIAlertController)
-    
-}
-
 
 /// Data source and delgate for the home view controller.
 final class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
@@ -40,7 +31,7 @@ final class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
             case .success(let result):
                 print(result)
                 self.delegate?.didGetResult(result)
-                //display the results to the user
+            //display the results to the user
             case .failure(let error):
                 //show an error that no results we're found
                 let errorAlert = UIAlertController.createError(body: error.errorDescription ?? "")
@@ -51,17 +42,16 @@ final class HomeViewControllerDataSource: NSObject, UISearchResultsUpdating {
     
 }
 
+// MARK:  Search bar delegate
 extension HomeViewControllerDataSource: UISearchBarDelegate {
-  
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchResultsManager.search(endpoint: .weather(searchBar.text ?? ""))
-        
     }
     
     //MARK: - Search results delegate
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        //store the result of the user input and call debounce
         searchResultsManager.search(endpoint: .weather(text))
     }
     

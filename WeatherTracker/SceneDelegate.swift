@@ -54,7 +54,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    
+    /// Sets up the inital coordinator for use and presentation of the first view controller
     private func setUpCoordiator() {
         navController = UINavigationController()
         mainCoordinator = HomeCoordinator(navController: navController!)

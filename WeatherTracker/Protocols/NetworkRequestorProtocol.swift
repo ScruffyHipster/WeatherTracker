@@ -10,8 +10,10 @@ import Alamofire
 
 /// Provides methods for network request managers
 protocol NetworkRequestorProtocol {
+    
     var session: Session { get set }
-    init(session: Session)
+    init(session: Session, env: NetworkEnviroment)
 
     func fetchDecodable<T: Decodable>(_ url: String, completion: @escaping (Result<T, AFError>) -> Void)
+    
 }

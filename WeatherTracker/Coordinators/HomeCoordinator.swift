@@ -60,7 +60,7 @@ final class HomeCoordinator: Coordinator {
     }
     
     // MARK:  VC init methods
-
+    
     /// Sets up the inital home view controller
     private func initHomeViewController() {
         navigationController.pushViewController(homeController, animated: true)
@@ -149,6 +149,9 @@ final class HomeCoordinator: Coordinator {
 }
 
 // MARK:  HomeViewController coordinator methods
+
+//this could become a delegate if the coordinator starts to handle more VC's / Coordinators.
+//right now this will do. There is scope here for the incorrect VC to call the incorrect methods.
 extension HomeCoordinator {
     
     /// Sets up the user defaults used for persistence
@@ -156,13 +159,13 @@ extension HomeCoordinator {
         userDefaults?.retriveObjectsFor(key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
     }
     
-    /// Prepare the details view
+    /// Prepare the details view for presentation
     /// - Parameter data: the data to be presented
     func showDetailsViewWith(_ data: WeatherRequest) {
         initDetailsViewController(with: data)
     }
     
-    /// Handle selecting a location to save
+    /// Handle selecting a location to save from the details view
     /// - Parameters:
     ///   - favourite: whether this is to save or remove
     ///   - data: this particular location

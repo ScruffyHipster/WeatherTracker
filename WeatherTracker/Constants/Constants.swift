@@ -12,10 +12,10 @@ struct Constants {
     // MARK: - Static Strings
     static let apiKey = "API_KEY"
     static let baseURL = "BASE_URL"
-
+    
     enum UserDefaultsIdentifiers {
         case favouriteLocations
-
+        
         var id: String {
             switch self {
             case .favouriteLocations:
@@ -62,7 +62,7 @@ enum StoryboardIdentifiers: String {
 
 enum Endpoints {
     case weather(String)
-
+    
     var endpoint: String {
         switch self {
         case .weather(let city):

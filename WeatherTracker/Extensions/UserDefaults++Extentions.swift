@@ -8,7 +8,7 @@
 import Foundation
 
 extension UserDefaults {
-
+    
     /// Saves  the objects . Will remove the last value if greater than the total
     /// - Parameter term: weather result to be saved
     func saveItem<T: Codable>(_ object: T) {
@@ -29,7 +29,7 @@ extension UserDefaults {
             updateWith(previousSearchesArray, key: Constants.UserDefaultsIdentifiers.favouriteLocations.id)
         }
     }
-
+    
     /// updates the user defaults with the passed array
     /// - Parameters:
     ///   - data: the data to overwrite the current data linked to key
@@ -37,5 +37,5 @@ extension UserDefaults {
     func updateWith(_ data: [Any], key: String) {
         self.set(try? PropertyListEncoder().encode(data as? [WeatherRequest]), forKey: key)
     }
-
+    
 }

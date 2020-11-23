@@ -9,7 +9,9 @@ import Foundation
 
 /// Provides conformnace for a user defaults manager
 protocol UserDefaultsManagerProtocol {
+    
     associatedtype Object
     var userDefaults: UserDefaults { get set }
     var defaultsReturnDataHandler: (([Object]?, UserDefaultsError?) -> Void)? { get set }
+    
 }

@@ -7,13 +7,14 @@
 
 import UIKit
 
+/// Allows storyboard UI to be loaded from code
 protocol Storyboarded {
     static func instantiate() -> Self
     static var storyboardId: StoryboardIdentifiers { get }
 }
 
 extension Storyboarded where Self: UIViewController {
-
+    
     /// Instantiates the controller this is called upon
     /// - Returns: a type which is a subcless of UIViewController
     static func instantiate() -> Self {

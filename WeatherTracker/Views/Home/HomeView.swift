@@ -14,7 +14,6 @@ final class HomeView: UIView {
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
-    
 }
 
 

@@ -141,7 +141,6 @@ final class HomeCoordinator: Coordinator {
                 self.homeViewModel.favouriteLocations = results
                 return
             }
-            print(error)
             let errorAlert = UIAlertController.createError(body: error.localizedDescription)
             self?.homeController.present(errorAlert, animated: true)
         }

@@ -44,7 +44,10 @@ final class WeatherUserDefaultsManager: UserDefaultsManager<WeatherRequest> {
     /// - Parameter key: value of objects
     func retriveObjectsFor(key: String) {
         guard let data = userDefaults.value(forKey: key) as? Data else {
-            defaultsReturnDataHandler?(nil, UserDefaultsError.noObjectForTerm)
+            let data = userDefaults.value(forKey: key) as? Data
+            if data != nil {
+                defaultsReturnDataHandler?(nil, UserDefaultsError.noObjectForTerm)
+            }
             return
         }
         let objects = try? PropertyListDecoder().decode([WeatherRequest].self, from: data)

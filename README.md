@@ -1,7 +1,5 @@
 # Welcome to Weather Tracker
 
-Weather tracker is my submission for the Sky iOS tech test.
-
 The app allows users to search locations, favourite different locations and view current forecast information for a particular area. The app on launch will also pull information regarding the local conditions to the user and display this on launch.
 
 The app version is set to iOS 14. This isn't due to any technology used in app, purely the default version it was built with. 

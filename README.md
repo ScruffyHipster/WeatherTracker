@@ -58,6 +58,12 @@ The app requires the user location to determine the current forecast of the curr
 
 The home page featuers the current location cell at the top of the table view and the favourites section. 
 
+<p float="left">
+<img src="https://user-images.githubusercontent.com/14076860/99994599-1b92d100-2db1-11eb-9c1f-402bf4e9724f.png" width="200" />
+<img src="https://user-images.githubusercontent.com/14076860/99994689-3feead80-2db1-11eb-890e-bb9634dd3fa9.png" width="200" />
+<img src="https://user-images.githubusercontent.com/14076860/99994716-4aa94280-2db1-11eb-87f7-89ebaf7fa59d.png" width="200" />
+</p>
+
 #### No favourites
 
 The favourites section will show an instructional cell when no favourites are stored. 
@@ -92,9 +98,13 @@ The user can un-favourite the location and it will be removed upon dismissing th
 
 Due to time constraints the app has some issues that I will address in this section.
 
+- Auto update current location information on home page periodically.
+
+- Display the current weather information when opening a saved location.
+
 - Currently when a user searches for a location they have no prompt to suggest an action is occuring. A loading spinner would be implemented to facilitate this. 
 
-- Further forcast information of various aspects from the api
+- Display future forcast information for a location from the api.
 
 - More tests would be required and nessecary. 
 

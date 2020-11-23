@@ -32,6 +32,7 @@ final class DetailsViewModel {
         view.conditionsLabel.text = data.weather.first?.weatherDescription
         view.tempLabel.text = numberFormatter.string(from: NSNumber(value: data.main.temp))
         view.windSpeedLabel.text = numberFormatter.string(from: NSNumber(value: data.wind.speed))?.appending(" mph")
+        view.windDirectionImageView.getWindDirectionImage(from: data.wind.deg)
     }
     
     func didToggleFavouriteButton() {

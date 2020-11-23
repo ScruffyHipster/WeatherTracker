@@ -131,6 +131,7 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
             cell.countryLabel.text = currentCellData?.country
             cell.tempDegreesLabel.text = "\(currentCellData?.temp ?? 0) °C"
             cell.windSpeedLabel.text = "\(currentCellData?.windSpeed ?? 0) mph"
+            cell.windDirectionImage.getWindDirectionImage(from: currentCellData?.windDirection ?? 0)
             return cell
             
         case 1:
@@ -148,6 +149,7 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
                 cell.countryLabel.text = favouriteLocations[indexPath.row].country
                 cell.tempDegreesLabel.text = "\(favouriteLocations[indexPath.row].temp) °C"
                 cell.windSpeedLabel.text = "\(favouriteLocations[indexPath.row].windSpeed) mph"
+                cell.windDirectionImage.getWindDirectionImage(from: favouriteLocations[indexPath.row].windDirection)
                 return cell
             }
         default:

@@ -37,3 +37,25 @@ extension UIView {
     }
     
 }
+
+extension UIImageView {
+    
+    /// works out the image for cardinal wind direction
+    /// this reqjuires padding out further with NW, NE directions etc
+    /// - Parameter degs: the wind direction in degrees
+    func getWindDirectionImage(from degs: Int) {
+        switch degs {
+        case 0...89:
+            self.image = UIImage(systemName: "arrow.up")
+        case 90...179:
+            self.image = UIImage(systemName: "arrow.right")
+        case 180...269:
+            self.image = UIImage(systemName: "arrow.down")
+        case 270...359:
+            self.image = UIImage(systemName: "arrow.left")
+        default:
+            break
+        }
+    }
+    
+}

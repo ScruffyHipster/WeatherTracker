@@ -5,7 +5,6 @@
 //  Created by Thomas Murray on 18/11/2020.
 //
 
-import Foundation
 
 // MARK: - WeatherRequest
 struct WeatherRequest: Codable {

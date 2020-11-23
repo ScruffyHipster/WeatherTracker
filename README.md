@@ -100,8 +100,6 @@ Due to time constraints the app has some issues that I will address in this sect
 
 - Auto update current location information on home page periodically.
 
-- Display the current weather information when opening a saved location.
-
 - Currently when a user searches for a location they have no prompt to suggest an action is occuring. A loading spinner would be implemented to facilitate this. 
 
 - Display future forcast information for a location from the api.

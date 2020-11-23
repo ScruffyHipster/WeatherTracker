@@ -10,7 +10,7 @@ import UIKit
 /// View model for the home view
 /// handles conversion of data to the UI layer
 /// handles a network call and the table view datasource
-final class HomeViewModel {
+final class HomeViewModel: NSObject {
     
     // MARK: - Properties
     var currentLocation: String? {
@@ -28,7 +28,8 @@ final class HomeViewModel {
             updateFavouriteSection()
         }
     }
-    
+    //used to determine if we're viewing details or updating current location
+    private var viewDetails: Bool = false
     weak var delegate: HomeControllerDataSourceDelegate?
     var homeViewTableView: UITableView?
     var homeViewTableViewDataSource: HomeViewTableViewDataSource
@@ -53,14 +54,20 @@ final class HomeViewModel {
             switch result {
             case .success(let response):
                 //show the results in a modal
-                let cellIndex = IndexPath(row: 0, section: 0)
-                DispatchQueue.main.async {
-                    self.homeViewTableViewDataSource.currentCellData = response.convertToCellData()
-                    self.homeViewTableView?.reloadRows(at: [cellIndex], with: .fade)
+                if self.viewDetails {
+                    self.delegate?.didGetResult(response)
+                    self.viewDetails = false
+                } else {
+                    let cellIndex = IndexPath(row: 0, section: 0)
+                    DispatchQueue.main.async {
+                        self.homeViewTableViewDataSource.currentCellData = response.convertToCellData()
+                        self.homeViewTableView?.reloadRows(at: [cellIndex], with: .fade)
+                    }
                 }
             case .failure(let error):
                 let errorAlert = UIAlertController.createError(body: error.localizedDescription)
                 self.delegate?.presentError(errorAlert)
+                self.viewDetails = false
             }
         }
     }
@@ -84,86 +91,8 @@ final class HomeViewModel {
     
 }
 
-
-/// The table view data source for the apps home view table view.
-class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
-    
-    // MARK:  Properties
-    var notifications: NotificationCenter
-    var currentCellData: WeatherCellInfo?
-    var favouriteLocations = [WeatherCellInfo]()
-    private var locationCellIdentifier = Constants.TableViewIdentifiers.locationCell.id
-    private var notSearchedCellIdentifier = Constants.TableViewIdentifiers.notSearchedCell.id
-    
-    init(notificationCenter: NotificationCenter = NotificationCenter.default) {
-        self.notifications = notificationCenter
-    }
-    
-    // MARK: - Table view data souce
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return favouriteLocations.isEmpty ? 1 : favouriteLocations.count
-        default:
-            fatalError("There should only be two sections maximum")
-            break
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 120
-        case 1:
-            return favouriteLocations.isEmpty ? 180 : 120
-        default:
-            return tableView.estimatedRowHeight
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: locationCellIdentifier) as? LocationTableViewCell else {
-                fatalError("we should have a cell registered")
-            }
-            cell.backgroundImageView.image = #imageLiteral(resourceName: "mountainImage")
-            cell.locationTitleLabel.text = currentCellData?.location
-            cell.countryLabel.text = currentCellData?.country
-            cell.tempDegreesLabel.text = "\(currentCellData?.temp ?? 0) °C"
-            cell.windSpeedLabel.text = "\(currentCellData?.windSpeed ?? 0) mph"
-            cell.windDirectionImage.getWindDirectionImage(from: currentCellData?.windDirection ?? 0)
-            return cell
-            
-        case 1:
-            if favouriteLocations.isEmpty {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: notSearchedCellIdentifier) else {
-                    return UITableViewCell()
-                }
-                return cell
-            } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: locationCellIdentifier) as? LocationTableViewCell else {
-                    fatalError("we should have a cell registered")
-                }
-                cell.backgroundImageView.image = #imageLiteral(resourceName: "cityImage")
-                cell.locationTitleLabel.text = favouriteLocations[indexPath.row].location
-                cell.countryLabel.text = favouriteLocations[indexPath.row].country
-                cell.tempDegreesLabel.text = "\(favouriteLocations[indexPath.row].temp) °C"
-                cell.windSpeedLabel.text = "\(favouriteLocations[indexPath.row].windSpeed) mph"
-                cell.windDirectionImage.getWindDirectionImage(from: favouriteLocations[indexPath.row].windDirection)
-                return cell
-            }
-        default:
-            fatalError("There should only be two sections maximum")
-        }
-    }
-    
-    // MARK: - Table view delegate
-    func numberOfSections(in tableView: UITableView) -> Int {
-        2
-    }
+// MARK:  UItableViewDatasource
+extension HomeViewModel: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
@@ -189,12 +118,87 @@ class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            notifications.post(.init(name: .selectedFavouriteDetailsCell,
-                                     object: nil,
-                                     userInfo: [Constants.NotificationDictKeys.selectedCell.id : indexPath]))
-            
+            viewDetails = true
+            weatherResultsManager.search(endpoint: .weather(favouriteLocations[indexPath.row].name))
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            return 120
+        case 1:
+            return favouriteLocations.isEmpty ? 180 : 120
+        default:
+            return tableView.estimatedRowHeight
+        }
+    }
+}
+
+
+/// The table view data source for the apps home view table view.
+class HomeViewTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
+    
+    // MARK:  Properties
+    var currentCellData: WeatherCellInfo?
+    var favouriteLocations = [WeatherCellInfo]()
+    private var locationCellIdentifier = Constants.TableViewIdentifiers.locationCell.id
+    private var favouriteCellIdentifier = Constants.TableViewIdentifiers.favouriteCell.id
+    private var notSearchedCellIdentifier = Constants.TableViewIdentifiers.notSearchedCell.id
+    
+    // MARK: - Table view data souce
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return favouriteLocations.isEmpty ? 1 : favouriteLocations.count
+        default:
+            fatalError("There should only be two sections maximum")
+            break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: locationCellIdentifier) as? LocationTableViewCell else {
+                fatalError("we should have a cell registered")
+            }
+            cell.backgroundImageView.image = #imageLiteral(resourceName: "mountainImage")
+            cell.locationTitleLabel.text = currentCellData?.location
+            cell.countryLabel.text = currentCellData?.country
+            cell.tempDegreesLabel.text = "\(currentCellData?.temp ?? 0) °C"
+            cell.windSpeedLabel.text = "\(currentCellData?.windSpeed ?? 0) mph"
+            cell.windDirectionImage.getWindDirectionImage(from: currentCellData?.windDirection ?? 0)
+            return cell
+            
+        case 1:
+            if favouriteLocations.isEmpty {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: notSearchedCellIdentifier) else {
+                    return UITableViewCell()
+                }
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: favouriteCellIdentifier) as? FavouriteTableViewCell else {
+                    fatalError("we should have a cell registered")
+                }
+                cell.backgroundImageView.image = #imageLiteral(resourceName: "cityImage")
+                cell.locationTitleLabel.text = favouriteLocations[indexPath.row].location
+                cell.countryLabel.text = favouriteLocations[indexPath.row].country
+                return cell
+            }
+        default:
+            fatalError("There should only be two sections maximum")
+        }
+    }
+    
+    // MARK: - Table view delegate
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    
+
     
     
 }

@@ -20,7 +20,6 @@ final class HomeCoordinator: Coordinator {
     
     private var homeControllerDataSource: HomeViewControllerDataSource
     private var homeViewModel: HomeViewModel
-    private var notification: NotificationCenter
     private var detailsViewModel: DetailsViewModel?
     private var userDefaults: WeatherUserDefaultsManager?
     private var locationManager: LocationManager?
@@ -41,9 +40,8 @@ final class HomeCoordinator: Coordinator {
     init(navController: UINavigationController,
          homeControllerDataSource: HomeViewControllerDataSource = HomeViewControllerDataSource(),
          homeViewModel: HomeViewModel = HomeViewModel(),
-         userDefaults: WeatherUserDefaultsManager = WeatherUserDefaultsManager(userDefaults: .standard),
-         notification: NotificationCenter = NotificationCenter.default) {
-        self.notification = notification
+         userDefaults: WeatherUserDefaultsManager = WeatherUserDefaultsManager(userDefaults: .standard)
+    ) {
         self.navigationController = navController
         self.homeControllerDataSource = homeControllerDataSource
         self.homeViewModel = homeViewModel
@@ -53,7 +51,6 @@ final class HomeCoordinator: Coordinator {
     //MARK: - Methods
     func start() {
         setUpUserDefaults()
-        setUpNotificationManager()
         setUpLocationManager()
         setUpNavbar()
         initHomeViewController()
@@ -111,21 +108,6 @@ final class HomeCoordinator: Coordinator {
     private func setUpNavbar() {
         navigationController.navigationBar.prefersLargeTitles = true
         navigationController.navigationBar.backgroundColor = .white
-    }
-    
-    /// Sets up the notifications manager
-    private func setUpNotificationManager() {
-        notification.addObserver(forName: .selectedFavouriteDetailsCell,
-                                 object: nil,
-                                 queue: .main) { [weak self] (notification) in
-            guard let self = self,
-                  let userInfo = notification.userInfo,
-                  let indexPath = userInfo[Constants.NotificationDictKeys.selectedCell.id] as? IndexPath else {return}
-            //we have the index so now we can find it in the
-            //table view data souce
-            self.initDetailsViewController(with: self.homeViewModel.favouriteLocations[indexPath.row])
-            
-        }
     }
     
     /// Sets up the user defaults for data persistence

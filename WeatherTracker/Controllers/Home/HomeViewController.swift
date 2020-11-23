@@ -42,12 +42,13 @@ final class HomeViewController: UIViewController {
     private func setUpHomeViewModel() {
         guard let homeViewModel = homeViewModel else { return }
         homeViewModel.homeViewTableView = homeView.tableView
+        homeViewModel.delegate = self
         homeViewModel.setUp()
     }
     
     private func setUpHomeView() {
         guard let homeViewModel = homeViewModel else { return }
-        homeView.tableView.delegate = homeViewModel.homeViewTableViewDataSource
+        homeView.tableView.delegate = homeViewModel
         homeView.tableView.dataSource = homeViewModel.homeViewTableViewDataSource
         homeView.tableView.register(HomeTableViewSectionHeader.nib, forHeaderFooterViewReuseIdentifier: HomeTableViewSectionHeader.reuseIdentifier)
     }

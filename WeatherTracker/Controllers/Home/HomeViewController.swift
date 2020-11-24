@@ -57,7 +57,7 @@ final class HomeViewController: UIViewController {
         searchController = UISearchController(searchResultsController: nil)
         searchController?.searchBar.delegate = homeControllerDataSource
         searchController?.obscuresBackgroundDuringPresentation = true
-        searchController?.searchBar.placeholder = "Search for a location"
+        searchController?.searchBar.placeholder = "Search for a city"
         navigationItem.searchController = searchController
     }
     
